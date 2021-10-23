@@ -1,0 +1,30 @@
+.MobiGood {
+   max-width: 1200px;
+   height: 1100px;
+   display: flex;
+   margin-left: auto;
+   margin-right: auto;
+   /* background-color: rgb(216, 203, 200); */
+}
+
+@media (max-width: 1170px) {
+   .MobiGood {
+      max-width: 1150px;
+      height: 1100px;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      /* background-color: rgb(58, 48, 47); */
+   }
+ }
+
+@media (max-width: 992px) {
+   .MobiGood {
+      max-width: 992px;
+      height: 1100px;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      /* background-color: rgb(240, 190, 181); */
+   }
+ }

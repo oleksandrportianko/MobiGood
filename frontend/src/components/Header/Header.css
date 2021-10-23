@@ -1,0 +1,47 @@
+.header-logo {
+   margin-right: 5px;
+}
+
+.header-logo-container {
+   max-width: 200px;
+}
+
+.header-navigation {
+   display: flex;
+   align-items: center;
+}
+
+.header-nav-item {
+   margin-right: 25px;
+}
+
+.header-nav-item.active  {
+   font-weight: 700;
+   border-bottom: 1px solid black;
+}
+
+.header-name-company {
+   padding-top: 19px;
+}
+
+.border-under-img {
+   max-width: 135px;
+   height: 0;
+   border-top: 2px solid black;
+   position: relative;
+   left: 5px;
+}
+
+.header-cart-circle {
+   width: 20px;
+   height: 20px;
+   border-radius: 10px;
+   border: 2px solid black;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #FF4D00;
+   position: relative;
+   top: 10px;
+   right: 37px;
+}
