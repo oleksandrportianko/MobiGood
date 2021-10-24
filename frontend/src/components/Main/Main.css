@@ -1,0 +1,26 @@
+.main-title {
+   font-family: 'Montserrat';
+   font-weight: 800;
+   font-size: 23px;
+   line-height: 25px;
+}
+
+.main-title-discription {
+   font-family: 'Montserrat';
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 25px;
+}
+
+.main-button {
+   width: 221px;
+   height: 63px;
+   border-radius: 15px;
+   background-color: #FF4D00;
+   color: white;
+   font-size: 16px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: none;
+}

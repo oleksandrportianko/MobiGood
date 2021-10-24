@@ -1,0 +1,11 @@
+.footer-wrapper {
+   min-height: 150px;
+   background-color: black;
+   color: white;
+   font-family: 'Montserrat';
+   font-size: 14px;
+}
+
+.footer-title {
+   font-size: 16px;
+} 
