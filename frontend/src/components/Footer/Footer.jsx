@@ -4,6 +4,7 @@ import facebook from '../../assets/img/facebook.png'
 import instagram from '../../assets/img/instagram.png'
 import telegram from '../../assets/img/telegram.png'
 import { Col, Container, Image, Nav, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
    return (
@@ -19,7 +20,7 @@ const Footer = () => {
                <Col>
                   <Nav className="d-flex flex-column text-center">
                      <p className="footer-title">Інформація про нас</p>
-                     <Nav.Item>Про нас</Nav.Item>
+                     <Link className="text-decoration-none" to="/aboutus"><Nav.Item className="text-white">Про нас</Nav.Item></Link>
                      <Nav.Item>Контакти</Nav.Item>
                      <Nav.Item>Умови користування</Nav.Item>
                   </Nav>
