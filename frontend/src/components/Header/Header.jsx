@@ -5,32 +5,41 @@ import logo from '../../assets/img/logo.svg'
 import logoText from '../../assets/img/logo-text.svg'
 import login from '../../assets/img/login.png'
 import cart from '../../assets/img/cart.png'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
    return (
       <Container className="p-0 m-0 ms-2">
          <Row className="p-0 m-0">
             <Col className="header-logo-container p-0 m-0 d-flex align-items-center">
-               <Image className="header-logo" src={logo} />
+               <Link to="/">
+                  <Image className="header-logo" src={logo} />
+               </Link>
                <Col className="header-name-company d-flex flex-column" >
-                  <Image width="162px" className="header-text-img" src={logoText} />
+                  <Link to="/">
+                     <Image width="162px" className="header-text-img" src={logoText} />
+                  </Link>
                   <p className="border-under-img"></p>
                </Col>
             </Col>
             <Col xs={4} className="header-navigation p-0 m-0">
                <Nav className="ml-3">
-                  <Nav.Item className="header-nav-item active">Телефони</Nav.Item>
-                  <Nav.Item className="header-nav-item">Аксесуари</Nav.Item>
-                  <Nav.Item className="header-nav-item">Для авто</Nav.Item>
-                  <Nav.Item className="header-nav-item">Про нас</Nav.Item>
+                  <NavLink className="header-nav-link text-decoration-none text-dark" activeClassName="header-nav-active" to="/phones"><Nav.Item className="header-nav-item">Телефони</Nav.Item></NavLink>
+                  <NavLink className="text-decoration-none text-dark" activeClassName="header-nav-active" to="/accessories"><Nav.Item className="header-nav-item">Аксесуари</Nav.Item></NavLink>
+                  <NavLink className="text-decoration-none text-dark" activeClassName="header-nav-active" to="/forauto"><Nav.Item className="header-nav-item">Для авто</Nav.Item></NavLink>
+                  <NavLink className="text-decoration-none text-dark" activeClassName="header-nav-active" to="/aboutus"><Nav.Item className="header-nav-item">Про нас</Nav.Item></NavLink>
                </Nav>
             </Col>
             <Col xs={2} className="p-0 d-flex align-items-center">
-               <p className="header-phone-number m-0 fw-bold">(098)-863-81-38</p>
+               <p className="header-phone-number m-0 fw-bold">(066)-090-36-80</p>
             </Col>
             <Col xs="auto" className="d-flex align-items-center">
-               <Image width="32px" height="32px" className="" src={cart} />
-               <div className="header-cart-circle">1</div>
+               <Link to="/cart">
+                  <Image width="32px" height="32px" className="" src={cart} />
+               </Link>
+               <Link className="text-decoration-none" to="/cart">
+                  <div className="header-cart-circle">1</div>
+               </Link>
             </Col>
             <Col xs="auto" className="d-flex align-items-center">
                <Image width="32px" height="32px" src={login} />

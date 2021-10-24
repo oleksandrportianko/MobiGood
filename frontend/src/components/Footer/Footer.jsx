@@ -12,9 +12,9 @@ const Footer = () => {
             <Row className="pt-4">
                <Col className="text-center">
                   <p className="footer-title">Соцмережі</p>
-                  <Image className="me-2" width="40px" height="40px" src={instagram} />
-                  <Image className="me-2" width="40px" height="40px" src={telegram} />
-                  <Image width="40px" height="40px" src={facebook} />
+                  <a href="https://www.instagram.com/mobigoodshop/"><Image className="me-2" width="40px" height="40px" src={instagram} /></a>
+                  <a href="https://t.me/mobigoodshop/"><Image className="me-2" width="40px" height="40px" src={telegram} /></a>
+                  <a href="https://www.facebook.com/mobigoodshop/"><Image width="40px" height="40px" src={facebook} /></a>
                </Col>
                <Col>
                   <Nav className="d-flex flex-column text-center">

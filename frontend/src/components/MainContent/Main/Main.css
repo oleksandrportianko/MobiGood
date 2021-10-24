@@ -1,7 +1,7 @@
 .main-title {
    font-family: 'Montserrat';
    font-weight: 800;
-   font-size: 23px;
+   font-size: 25px;
    line-height: 25px;
 }
 
@@ -23,4 +23,5 @@
    align-items: center;
    justify-content: center;
    border: none;
+   text-decoration: none;
 }
