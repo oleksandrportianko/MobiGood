@@ -10,7 +10,7 @@
    grid-area: main;
    width: 1200px;
    margin: 0 auto;
-   background-color: rgb(216, 203, 200);
+   /* background-color: rgb(216, 203, 200); */
 }
 
 @media (min-width: 1200px) {
@@ -27,7 +27,20 @@
 
 @media (min-width: 768px) and (max-width: 992px) {
    .main-content {
-      max-width: 790px;
+      max-width: 770px;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .main-content {
+      max-width: 620px;
+   }
+}
+
+@media (max-width: 576px) {
+   .main-content {
+      width: 100%;
+      font-size: 12px;
    }
 }
 
@@ -53,13 +66,32 @@
 
 @media (min-width: 768px) and (max-width: 992px) {
    .header {
-      max-width: 790px;
+      max-width: 770px;
       font-size: 12px;
    }
 }
 
+@media (min-width: 576px) and (max-width: 768px) {
+   .header {
+      max-width: 620px;
+      font-size: 12px;
+   }
+}
+
+@media (max-width: 576px) {
+   .header {
+      width: 100%;
+      font-size: 12px;
+   }
+}
 
 .footer {
    grid-area: footer;
    max-width: 100%;
+}
+
+@media (max-width: 576px) {
+   .footer {
+      max-width: 100%;
+   }
 }

@@ -5,11 +5,54 @@
    line-height: 25px;
 }
 
+@media (min-width: 992px) and (max-width: 1200px) {
+   .main-title {
+      font-size: 23px;
+      line-height: 25px;
+   }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+   .main-title {
+      font-size: 18px;
+      line-height: 25px;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .main-title {
+      font-size: 16px;
+      line-height: 25px;
+      font-weight: 700;
+   }
+}
+
 .main-title-discription {
    font-family: 'Montserrat';
    font-weight: 500;
    font-size: 16px;
    line-height: 25px;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+   .main-title-discription {
+      font-size: 15px;
+      line-height: 23px;
+   }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+   .main-title-discription {
+      font-size: 14px;
+      line-height: 20px;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .main-title-discription {
+      font-size: 12px;
+      line-height: 15px;
+   }
 }
 
 .main-button {
@@ -27,7 +70,54 @@
    transition: 1s;
 }
 
+@media (min-width: 992px) and (max-width: 1200px) {
+   .main-button {
+      width: 221px;
+      height: 63px;
+      border-radius: 15px;
+   }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+   .main-button {
+      width: 181px;
+      height: 53px;
+      border-radius: 12px;
+      font-size: 14px;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .main-button {
+      width: 161px;
+      height: 43px;
+      border-radius: 8px;
+      font-size: 12px;
+   }
+}
+
 .main-button:hover {
    box-shadow: 2px 2px 3px 3px #ff814b;
    transition: 1s;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+   .main-image-phone {
+      width: 550px;
+      height: 550px;
+   }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+   .main-image-phone {
+      width: 390px;
+      height: 400px;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .main-image-phone {
+      width: 300px;
+      height: 320px;
+   }
 }

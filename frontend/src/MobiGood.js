@@ -16,14 +16,16 @@ function MobiGood() {
         <Header />
       </div>
       <div className="main-content">
-        {/* <Route exact path="/" render={() => <Main />} /> */}
+        <Route exact path="/" render={() => <Main />} />
         <Route path="/phones" render={() => <Phones />} />
         <Route path="/cart" render={() => <Cart />} />
         <Route path="/accessories" render={() => <Accessories />} />
         <Route path="/forauto" render={() => <ForAuto />} />
         <Route path="/aboutus" render={() => <AboutUs />} />
       </div>
-      <div className="footer">{/* <Footer /> */}</div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }

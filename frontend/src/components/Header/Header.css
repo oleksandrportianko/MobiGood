@@ -1,9 +1,18 @@
 .header-logo {
    margin-right: 5px;
 }
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-logo {
+      width: 30px;
+      height: 30px;
+   }
+}
 
-.header-logo-container {
-   width: 300px;
+@media (max-width: 576px) {
+   .header-logo {
+      width: 40px;
+      height: 40px;
+   }
 }
 
 .header-navigation-container {
@@ -11,25 +20,18 @@
    align-items: center;
 }
 
-@media (max-width: 1200px) {
-   .header-navigation-container {
-      max-width: 360px;
-   }
-}
-
 .header-nav-item {
    margin: 0 5px;
    font-family: 'Montserrat';
-   text-align: center;
-}
-
-.header-nav-link {
-   text-align: center;
 }
 
 .header-nav-active  {
    font-weight: 700;
    border-bottom: 1px solid black;
+}
+
+.header-burger-nav-active {
+   font-weight: 700;
 }
 
 .header-name-company {
@@ -40,16 +42,15 @@
    font-family: "Montserrat";  
 }
 
-.header-number {
-   max-width: 150px;
-}
-
-@media (max-width: 1200px) {
-   .header-number-container {
-      max-width: 360px;
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-phone-number {
+      font-size: 8px;
    }
 }
 
+.header-number {
+   max-width: 150px;
+}
 
 .border-under-img {
    max-width: 135px;
@@ -58,6 +59,21 @@
    position: relative;
    left: 5px;
 }
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-cart-image {
+      width: 20px;
+      height: 20px;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-login-image {
+      width: 20px;
+      height: 20px;
+   }
+}
+
 
 .header-cart-circle {
    width: 20px;
@@ -68,18 +84,23 @@
    align-items: center;
    justify-content: center;
    background-color: #FF4D00;
-   position: relative;
-   top: 10px;
-   right: 37px;
+   top: 15px;
+   right: 15px;
    font-family: "Montserrat";
    color: black;
 }
-/* 
-@media (max-width: 1200px) {
-.header-cart-container {
-   max-width: 50px;
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-cart-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 10px;
+      border: 1px solid black;
+      font-size: 9px;
+      top: 11px;
+      right: 11px;
+   }
 }
-} */
 
 .header-button-login {
    border: none;
@@ -87,7 +108,17 @@
    font-family: "Montserrat";
 }
 
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-button-login {
+      border-right: 1px solid black;
+   }
+}
+
 .header-button-regitration {
    border: none;
    font-family: "Montserrat";  
+}
+
+.header-burger-menu-body {
+   font-size: 11px;
 }
