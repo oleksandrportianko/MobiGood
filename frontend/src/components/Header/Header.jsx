@@ -1,11 +1,12 @@
 import React from 'react'
 import './Header.css'
-import { Col, Container, Image, Nav, Navbar, NavDropdown, Offcanvas, Row } from 'react-bootstrap'
+import { Col, Container, Image, Nav, Row } from 'react-bootstrap'
 import logo from '../../assets/img/logo.svg'
 import logoText from '../../assets/img/logo-text.svg'
 import login from '../../assets/img/login.png'
 import cart from '../../assets/img/cart.png'
 import { Link, NavLink } from 'react-router-dom'
+import HeaderBurger from './HeaderBurger/HeaderBurger'
 
 const Header = () => {
    return (
@@ -22,44 +23,7 @@ const Header = () => {
                   <p className="border-under-img"></p>
                </Col>
             </Col>
-
-            <Col xs={6} className="d-sm-none p-0 d-flex">
-               <Navbar bg="#000" expand={false} className="p-0">
-                  <Container className="p-0">
-                     <Navbar.Brand className="m-0">
-                        <Link to="/">
-                           <Image className="header-logo" src={logo} />
-                        </Link>
-                     </Navbar.Brand>
-                     <Navbar.Toggle aria-controls="offcanvasNavbar" className="p-0 border-0 text-black" />
-                     <Navbar.Offcanvas
-                        id="offcanvasNavbar"
-                        aria-labelledby="offcanvasNavbarLabel">
-                        <Offcanvas.Header className="p-0 mb-3" closeButton>
-                           <Offcanvas.Title id="offcanvasNavbarLabel">
-                              <Link to="/">
-                                 <Image width="162px" className="header-text-img" src={logoText} />
-                              </Link>
-                           </Offcanvas.Title>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body className="header-burger-menu-body p-0">
-                           <Nav className="mb-2 mx-3">
-                              <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/phones"><Nav.Item className="header-nav-item">Телефони</Nav.Item></NavLink>
-                              <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/accessories"><Nav.Item className="header-nav-item">Аксесуари</Nav.Item></NavLink>
-                              <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/forauto"><Nav.Item className="header-nav-item">Для авто</Nav.Item></NavLink>
-                              <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/aboutus"><Nav.Item className="header-nav-item">Про нас</Nav.Item></NavLink>
-                           </Nav>
-                           <Col className="d-flex align-items-center">
-                              <Image width="32px" height="32px" className="header-login-image" src={login} />
-                              <button className="header-button-login bg-transparent text-black">Вхід</button>
-                              <button className="header-button-regitration bg-transparent text-black">Реєстрація</button>
-                           </Col>
-                        </Offcanvas.Body>
-                     </Navbar.Offcanvas>
-                  </Container>
-               </Navbar>
-            </Col>
-
+            <HeaderBurger />
             <Col sm="auto" md={3} lg={4} xl={4} className="header-navigation-container d-none d-sm-flex me-sm-4 me-md-0 me-xl-5 p-0 m-0">
                <Nav className="ml-3">
                   <NavLink className="header-nav-link text-decoration-none text-dark" activeClassName="header-nav-active" to="/phones"><Nav.Item className="header-nav-item">Телефони</Nav.Item></NavLink>
@@ -83,7 +47,7 @@ const Header = () => {
                <button className="header-button-regitration bg-transparent text-black">Реєстрація</button>
             </Col>
          </Row>
-      </Container>
+      </Container >
    )
 }
 

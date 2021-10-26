@@ -1,0 +1,19 @@
+.header-button-burger:hover {
+   background-color: rgb(247, 243, 247);
+   border-radius: 2px;
+}
+
+.header-burger-nav-item {
+   font-size: 26px;
+}
+
+.header-burger-button-login {
+   font-size: 26px;
+   border: none;
+   border-right: 1px solid black;
+}
+
+.header-burger-button-regitration {
+   font-size: 26px;
+   border: none;
+}

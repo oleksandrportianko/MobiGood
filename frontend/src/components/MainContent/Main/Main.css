@@ -27,6 +27,14 @@
    }
 }
 
+@media (max-width: 576px){
+   .main-title {
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 700;
+   }
+}
+
 .main-title-discription {
    font-family: 'Montserrat';
    font-weight: 500;
@@ -51,6 +59,13 @@
 @media (min-width: 576px) and (max-width: 768px) {
    .main-title-discription {
       font-size: 12px;
+      line-height: 15px;
+   }
+}
+
+@media (max-width: 576px){
+   .main-title-discription {
+      font-size: 11px;
       line-height: 15px;
    }
 }
@@ -88,6 +103,15 @@
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
+   .main-button {
+      width: 161px;
+      height: 43px;
+      border-radius: 8px;
+      font-size: 12px;
+   }
+}
+
+@media (max-width: 576px) {
    .main-button {
       width: 161px;
       height: 43px;

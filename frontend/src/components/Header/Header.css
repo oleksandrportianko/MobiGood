@@ -25,6 +25,10 @@
    font-family: 'Montserrat';
 }
 
+.header-nav-item:hover {
+   background-color: rgb(240, 234, 240);
+}
+
 .header-nav-active  {
    font-weight: 700;
    border-bottom: 1px solid black;
