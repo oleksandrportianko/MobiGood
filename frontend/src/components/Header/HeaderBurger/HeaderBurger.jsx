@@ -16,6 +16,23 @@ import aboutus from '../../../assets/img/aboutus.png'
 const HeaderBurger = () => {
 
    const [activeBurger, setActiveBurger] = useState(false);
+   const [menuItems, setMenuItems] = useState([
+      { id: 1, name: "Телефони", image: `${phone}`, url: "/phones" },
+      { id: 2, name: "Аксесуари", image: `${headset}`, url: "/accessories" },
+      { id: 3, name: "Для авто", image: `${wheel}`, url: "/forauto" },
+      { id: 4, name: "Про нас", image: `${aboutus}`, url: "/aboutus" },
+   ])
+
+   let menuItemsList = menuItems.map((m) => {
+      return (
+         <NavLink key={m.id} className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to={m.url}>
+            <Nav.Item className="header-burger-nav-item text-black d-flex align-items-center">
+               <Image className="me-1" width="28px" height="28px" src={m.image}></Image>
+               <p className="m-0"> {m.name} </p>
+            </Nav.Item>
+         </NavLink>
+      )
+   })
 
    const handleShow = () => {
       setActiveBurger(true)
@@ -64,30 +81,7 @@ const HeaderBurger = () => {
                </Offcanvas.Header>
                <Offcanvas.Body className="header-burger-menu-body p-0 ">
                   <Nav className="py-2 px-3 border-bottom d-flex flex-column">
-                     <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/phones">
-                        <Nav.Item className="header-burger-nav-item text-black d-flex align-items-center">
-                           <Image className="me-1" width="28px" height="28px" src={phone}></Image>
-                           <p className="m-0"> Телефони </p>
-                        </Nav.Item>
-                     </NavLink>
-                     <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/accessories">
-                        <Nav.Item className="header-burger-nav-item text-black d-flex align-items-center">
-                           <Image className="me-1" width="28px" height="28px" src={headset}></Image>
-                           <p className="m-0"> Аксесуари </p>
-                        </Nav.Item>
-                     </NavLink>
-                     <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/forauto">
-                        <Nav.Item className="header-burger-nav-item text-black d-flex align-items-center">
-                           <Image className="me-1" width="28px" height="28px" src={wheel}></Image>
-                           <p className="m-0"> Для авто </p>
-                        </Nav.Item>
-                     </NavLink>
-                     <NavLink className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to="/aboutus">
-                        <Nav.Item className="header-burger-nav-item text-black d-flex align-items-center">
-                           <Image className="me-1" width="28px" height="28px" src={aboutus}></Image>
-                           <p className="m-0"> Про нас </p>
-                        </Nav.Item>
-                     </NavLink>
+                     {menuItemsList}
                   </Nav>
                   <Col className="d-flex align-items-center pt-1">
                      <Image width="32px" height="32px" className="header-login-image" src={login} />
