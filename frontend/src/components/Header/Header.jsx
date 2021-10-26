@@ -6,7 +6,7 @@ import logoText from '../../assets/img/logo-text.svg'
 import login from '../../assets/img/login.png'
 import cart from '../../assets/img/cart.png'
 import { Link, NavLink } from 'react-router-dom'
-import HeaderBurger from './HeaderBurger/HeaderBurger'
+import HeaderBurgerContainer from './HeaderBurger/HeaderBurgerContainer'
 
 const Header = () => {
    return (
@@ -23,7 +23,7 @@ const Header = () => {
                   <p className="border-under-img"></p>
                </Col>
             </Col>
-            <HeaderBurger />
+            <HeaderBurgerContainer />
             <Col sm="auto" md={3} lg={4} xl={4} className="header-navigation-container d-none d-sm-flex me-sm-4 me-md-0 me-xl-5 p-0 m-0">
                <Nav className="ml-3">
                   <NavLink className="header-nav-link text-decoration-none text-dark" activeClassName="header-nav-active" to="/phones"><Nav.Item className="header-nav-item">Телефони</Nav.Item></NavLink>

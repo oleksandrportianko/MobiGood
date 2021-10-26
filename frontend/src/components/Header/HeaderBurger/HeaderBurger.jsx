@@ -8,22 +8,11 @@ import logoText from '../../../assets/img/logo-text.svg'
 import login from '../../../assets/img/login.png'
 import menu from '../../../assets/img/menu.png'
 import close from '../../../assets/img/close.png'
-import phone from '../../../assets/img/phone.png'
-import headset from '../../../assets/img/headset.png'
-import wheel from '../../../assets/img/wheel.png'
-import aboutus from '../../../assets/img/aboutus.png'
 
-const HeaderBurger = () => {
-
+const HeaderBurger = (props) => {
    const [activeBurger, setActiveBurger] = useState(false);
-   const [menuItems, setMenuItems] = useState([
-      { id: 1, name: "Телефони", image: `${phone}`, url: "/phones" },
-      { id: 2, name: "Аксесуари", image: `${headset}`, url: "/accessories" },
-      { id: 3, name: "Для авто", image: `${wheel}`, url: "/forauto" },
-      { id: 4, name: "Про нас", image: `${aboutus}`, url: "/aboutus" },
-   ])
 
-   let menuItemsList = menuItems.map((m) => {
+   let menuItemsList = props.headerItems.map((m) => {
       return (
          <NavLink key={m.id} className="text-decoration-none text-dark" activeClassName="header-burger-nav-active" to={m.url}>
             <Nav.Item className="header-burger-nav-item text-black d-flex align-items-center">
