@@ -1,5 +1,5 @@
 let initialState = {
-  countItemsCart: 10,
+  countItemsCart: 0,
 };
 
 let cartReducer = (state = initialState, action) => {

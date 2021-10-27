@@ -8,10 +8,13 @@ import cart from '../../assets/img/cart.png'
 import { Link, NavLink } from 'react-router-dom'
 import HeaderBurgerContainer from './HeaderBurger/HeaderBurgerContainer'
 import CartModal from './CartModal/CartModal'
+import LoginModal from './LoginModal/LoginModal'
 
 const Header = (props) => {
 
    const [showCart, setShowCart] = useState(false);
+   const [showLogin, setShowLogin] = useState(false);
+   const [showRegistration, setShowRegistration] = useState(false);
 
    return (
       <Container fluid className="p-0 m-0 ms-md-2">
@@ -50,13 +53,19 @@ const Header = (props) => {
             <CartModal
                show={showCart}
                onHide={() => setShowCart(false)}
+               closeModal={() => setShowCart(false)}
                countItemsCart={props.countItemsCart}
             />
             <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
                <Image width="32px" height="32px" className="header-login-image" src={login} />
-               <button className="header-button-login bg-transparent text-black">Вхід</button>
+               <button onClick={() => setShowLogin(true)} className="header-button-login bg-transparent text-black">Вхід</button>
                <button className="header-button-regitration bg-transparent text-black">Реєстрація</button>
             </Col>
+            <LoginModal
+               show={showLogin}
+               onHide={() => setShowLogin(false)}
+               closeModal={() => setShowLogin(false)}
+            />
          </Row>
       </Container >
    )
