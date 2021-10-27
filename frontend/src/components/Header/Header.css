@@ -78,7 +78,6 @@
    }
 }
 
-
 .header-cart-circle {
    width: 20px;
    height: 20px;
@@ -89,20 +88,33 @@
    justify-content: center;
    background-color: #FF4D00;
    top: 15px;
-   right: 15px;
+   right: 18px;
    font-family: "Montserrat";
    color: black;
+   font-size: 12px;
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
    .header-cart-circle {
-      width: 10px;
-      height: 10px;
+      width: 11px;
+      height: 11px;
       border-radius: 10px;
       border: 1px solid black;
       font-size: 9px;
       top: 11px;
       right: 11px;
+   }
+}
+
+@media (max-width: 576px) {
+   .header-cart-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 10px;
+      border: 1px solid black;
+      font-size: 12px;
+      top: 17px;
+      right: 19px;
    }
 }
 

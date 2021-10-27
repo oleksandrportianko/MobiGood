@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Col, Container, Image, Nav, Navbar, Offcanvas, Row } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
 import './HeaderBurger.css'
-
 import logo from '../../../assets/img/logo.svg'
 import logoText from '../../../assets/img/logo-text.svg'
 import login from '../../../assets/img/login.png'
@@ -25,12 +24,10 @@ const HeaderBurger = (props) => {
 
    const handleShow = () => {
       setActiveBurger(true)
-      console.log(activeBurger)
    }
 
    const handleClose = () => {
       setActiveBurger(false)
-      console.log(activeBurger)
    }
 
    return (

@@ -1,0 +1,53 @@
+.empty-cart-image {
+   width: 40%;
+   height: 40%;
+}
+
+.cart-model-title {
+   font-size: 22px;
+   font-family: 'Montserrat';
+}
+
+@media (max-width: 576px) {
+   .cart-model-title {
+      font-size: 18px;
+      font-family: 'Montserrat';
+   }
+}
+
+.cart-empty-text {
+   font-size: 16px;
+   line-height: 20px;
+   font-family: 'Montserrat';
+   text-align: center;
+}
+
+.cart-model-button-back {
+   background-color: #FF4D00;
+   border: none;
+   color: white;
+   font-size: 15px;
+   font-family: 'Montserrat';
+   padding: 10px;
+   border-radius: 5px;
+}
+
+.cart-model-button-order {
+   background-color: #21a75d;
+   border: none;
+   color: white;
+   font-size: 15px;
+   font-family: 'Montserrat';
+   padding: 10px;
+   border-radius: 5px;
+}
+
+@media (max-width: 576px) {
+   .cart-model-button-order,
+   .cart-model-button-back {
+      font-size: 12px;
+      font-family: 'Montserrat';
+      padding: 7px;
+      border-radius: 5px;
+   }
+}
