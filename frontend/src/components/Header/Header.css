@@ -1,0 +1,140 @@
+.header-logo {
+   margin-right: 5px;
+}
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-logo {
+      width: 30px;
+      height: 30px;
+   }
+}
+
+@media (max-width: 576px) {
+   .header-logo {
+      width: 40px;
+      height: 40px;
+   }
+}
+
+.header-navigation-container {
+   display: flex;
+   align-items: center;
+}
+
+.header-nav-item {
+   margin: 0 5px;
+   font-family: 'Montserrat';
+}
+
+.header-nav-item:hover {
+   background-color: rgb(240, 234, 240);
+}
+
+.header-nav-active  {
+   font-weight: 700;
+   border-bottom: 1px solid black;
+}
+
+.header-burger-nav-active {
+   font-weight: 700;
+}
+
+.header-name-company {
+   padding-top: 19px;
+}
+
+.header-phone-number {
+   font-family: "Montserrat";  
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-phone-number {
+      font-size: 8px;
+   }
+}
+
+.header-number {
+   max-width: 150px;
+}
+
+.border-under-img {
+   max-width: 135px;
+   height: 0;
+   border-top: 2px solid black;
+   position: relative;
+   left: 5px;
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-cart-image {
+      width: 20px;
+      height: 20px;
+   }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-login-image {
+      width: 20px;
+      height: 20px;
+   }
+}
+
+.header-cart-circle {
+   width: 20px;
+   height: 20px;
+   border-radius: 10px;
+   border: 2px solid black;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #FF4D00;
+   top: 15px;
+   right: 18px;
+   font-family: "Montserrat";
+   color: black;
+   font-size: 12px;
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-cart-circle {
+      width: 11px;
+      height: 11px;
+      border-radius: 10px;
+      border: 1px solid black;
+      font-size: 9px;
+      top: 11px;
+      right: 11px;
+   }
+}
+
+@media (max-width: 576px) {
+   .header-cart-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 10px;
+      border: 1px solid black;
+      font-size: 12px;
+      top: 17px;
+      right: 19px;
+   }
+}
+
+.header-button-login {
+   border: none;
+   border-right: 2px solid black;
+   font-family: "Montserrat";
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-button-login {
+      border-right: 1px solid black;
+   }
+}
+
+.header-button-regitration {
+   border: none;
+   font-family: "Montserrat";  
+}
+
+.header-burger-menu-body {
+   font-size: 11px;
+}
