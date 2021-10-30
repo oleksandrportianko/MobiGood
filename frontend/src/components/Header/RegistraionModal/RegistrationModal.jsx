@@ -53,7 +53,7 @@ let RegistrationForm = (props) => {
       <form onSubmit={props.handleSubmit} >
          <Container fluid >
             <Row>
-               <label className="registration-lable p-0" htmlFor="email">Введіть електронну адресу</label>
+               <label className="registration-lable p-0 m-0" htmlFor="email">Введіть електронну адресу</label>
                <Field className="registration-form-registration" name="email" component="input" type="email" />
             </Row>
             <Row>
