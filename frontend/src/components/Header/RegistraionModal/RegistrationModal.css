@@ -1,0 +1,54 @@
+.registration-lable {
+   font-size: 14px;
+}
+
+.registration-modal-title {
+   font-size: 22px;
+   font-family: 'Montserrat';
+}
+
+@media (max-width: 576px) {
+   .registration-modal-title {
+      font-size: 18px;
+      font-family: 'Montserrat';
+   }
+}
+
+.registration-form-registration,
+.registration-form-name,
+.registration-form-tel,
+.registration-form-password {
+   border: none;
+   border-bottom: 1px solid black;
+}
+
+.registration-modal-header {
+   background-color: #FF4D00;
+}
+
+.registration-modal-header-image-close {
+   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(233deg) brightness(106%) contrast(105%);
+}
+
+.registration-form-submit {
+   border: none;
+   background-color: #FF4D00;
+   border-radius: 8px;
+   height: 35px;
+   width: 140px;
+   color: white;
+   font-size: 16px;
+}
+
+.registration-modal-button-google {
+   border: none;
+   background-color: transparent;
+   border: 1px solid red;
+   border-radius: 7px;
+}
+
+.registration-modal-button-to-login {
+   background-color: transparent;
+   border: none;
+   color: rgb(51, 51, 207);
+}

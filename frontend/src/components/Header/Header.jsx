@@ -9,6 +9,7 @@ import { Link, NavLink } from 'react-router-dom'
 import HeaderBurgerContainer from './HeaderBurger/HeaderBurgerContainer'
 import CartModal from './CartModal/CartModal'
 import LoginModal from './LoginModal/LoginModal'
+import RegistrationModal from './RegistraionModal/RegistrationModal'
 
 const Header = (props) => {
 
@@ -30,7 +31,7 @@ const Header = (props) => {
                   <p className="border-under-img"></p>
                </Col>
             </Col>
-            <HeaderBurgerContainer />
+            <HeaderBurgerContainer setShowLogin={setShowLogin} setShowRegistration={setShowRegistration} />
             <Col sm="auto" md={3} lg={4} xl={4} className="header-navigation-container d-none d-sm-flex me-sm-4 me-md-0 me-xl-5 p-0 m-0">
                <Nav className="ml-3">
                   <NavLink className="header-nav-link text-decoration-none text-dark" activeClassName="header-nav-active" to="/phones"><Nav.Item className="header-nav-item">Телефони</Nav.Item></NavLink>
@@ -59,12 +60,21 @@ const Header = (props) => {
             <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
                <Image width="32px" height="32px" className="header-login-image" src={login} />
                <button onClick={() => setShowLogin(true)} className="header-button-login bg-transparent text-black">Вхід</button>
-               <button className="header-button-regitration bg-transparent text-black">Реєстрація</button>
+               <button onClick={() => setShowRegistration(true)} className="header-button-regitration bg-transparent text-black">Реєстрація</button>
             </Col>
             <LoginModal
                show={showLogin}
                onHide={() => setShowLogin(false)}
                closeModal={() => setShowLogin(false)}
+               setShowLogin={setShowLogin}
+               setShowRegistration={setShowRegistration}
+            />
+            <RegistrationModal
+               show={showRegistration}
+               onHide={() => setShowRegistration(false)}
+               closeModal={() => setShowRegistration(false)}
+               setShowLogin={setShowLogin}
+               setShowRegistration={setShowRegistration}
             />
          </Row>
       </Container >
