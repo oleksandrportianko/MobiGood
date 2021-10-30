@@ -71,8 +71,8 @@ const HeaderBurger = (props) => {
                   </Nav>
                   <Col className="d-flex align-items-center pt-1">
                      <Image width="32px" height="32px" className="header-login-image" src={login} />
-                     <button className="header-burger-button-login bg-transparent text-black">Вхід</button>
-                     <button className="header-burger-button-regitration bg-transparent text-black">Реєстрація</button>
+                     <button onClick={() => props.setShowLogin(true)} className="header-burger-button-login bg-transparent text-black">Вхід</button>
+                     <button onClick={() => props.setShowRegistration(true)} className="header-burger-button-regitration bg-transparent text-black">Реєстрація</button>
                   </Col>
                </Offcanvas.Body>
             </Offcanvas>

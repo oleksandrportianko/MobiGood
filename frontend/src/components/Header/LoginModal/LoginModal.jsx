@@ -2,10 +2,9 @@ import Button from '@restart/ui/esm/Button'
 import React from 'react'
 import { Col, Container, Image, Modal, Row } from 'react-bootstrap'
 import './LoginModal.css'
-import close from '../../../assets/img/close.png'
+import close from '../../../assets/img/close.svg'
 import { Field, reduxForm } from 'redux-form'
 import googleLogin from '../../../assets/img/google-login.png'
-import facebookLogin from '../../../assets/img/facebook-login.png'
 
 const LoginModal = (props) => {
 
@@ -13,12 +12,17 @@ const LoginModal = (props) => {
       console.log(formData)
    }
 
+   const redirectToRegistration = () => {
+      props.setShowLogin(false);
+      props.setShowRegistration(true);
+   }
+
    return (
       <Modal {...props} size="md" aria-labelledby="login-modal" centered>
-         <Modal.Header className="ps-2 p-1 p-sm-3 d-flex justify-content-between">
-            <Container fluid className="cart-model-title p-0 d-flex justify-content-between align-items-center">
-               <p className="m-0"> Вхід </p>
-               <Image onClick={props.closeModal} width="20px" height="20px" src={close} />
+         <Modal.Header className="login-modal-header ps-2 p-1 p-sm-3 d-flex justify-content-between">
+            <Container fluid className="login-modal-title p-0 d-flex justify-content-between align-items-center">
+               <p className="m-0 text-white"> Вхід </p>
+               <Image className="login-modal-header-image-close" onClick={props.closeModal} width="20px" height="20px" src={close} />
             </Container>
          </Modal.Header>
          <Modal.Body className="d-flex flex-column pb-0" >
@@ -28,22 +32,15 @@ const LoginModal = (props) => {
             <Container fluid className="p-0 m-0">
                <Col className="text-center">
                   <p className="m-0">або</p>
-                  <p className="m-0">Увійти через акаунт:</p>
                   <Row className="m-0 pt-1 pb-1 justify-content-center">
                      <Col xs="auto">
-                        <Button className="login-modal-button-facebook p-0 m-0 p-1" onClick={() => alert('going to facebook')}>
-                           <Image width="28px" height="28px" src={facebookLogin} />
-                           Facebook
-                        </Button>
-                     </Col>
-                     <Col xs="auto">
                         <Button className="login-modal-button-google p-0 m-0 p-1" onClick={() => alert('going to google')}>
-                           <Image width="28px" height="28px" src={googleLogin} />
-                           Google</Button>
+                           <Image className="me-1" width="28px" height="28px" src={googleLogin} />
+                           Увійти через Google</Button>
                      </Col>
                   </Row>
                   <span>Не зареєстровані?</span>
-                  <Button className="login-modal-button-to-registration" onClick={() => alert('going to registration')}>Зареєструватися</Button>
+                  <Button className="login-modal-button-to-registration" onClick={redirectToRegistration}>Зареєструватися</Button>
                </Col>
             </Container>
          </Modal.Footer>

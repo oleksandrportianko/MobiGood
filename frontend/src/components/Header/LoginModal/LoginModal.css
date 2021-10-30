@@ -2,6 +2,26 @@
    font-size: 14px;
 }
 
+.login-modal-title {
+   font-size: 22px;
+   font-family: 'Montserrat';
+}
+
+@media (max-width: 576px) {
+   .login-modal-title {
+      font-size: 18px;
+      font-family: 'Montserrat';
+   }
+}
+
+.login-modal-header {
+   background-color: #FF4D00;
+}
+
+.login-modal-header-image-close {
+   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(233deg) brightness(106%) contrast(105%);
+}
+
 .login-form-login,
 .login-form-password {
    border: none;
@@ -18,17 +38,10 @@
    font-size: 16px;
 }
 
-.login-modal-button-facebook {
-   border: none;
-   background-color: transparent;
-   border: 1px solid black;
-   border-radius: 7px;
-}
-
 .login-modal-button-google {
    border: none;
    background-color: transparent;
-   border: 1px solid black;
+   border: 1px solid red;
    border-radius: 7px;
 }
 
