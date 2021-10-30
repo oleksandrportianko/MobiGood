@@ -17,6 +17,10 @@ const Header = (props) => {
    const [showLogin, setShowLogin] = useState(false);
    const [showRegistration, setShowRegistration] = useState(false);
 
+   const closeModal = () => {
+      setShowCart(false)
+   }
+
    return (
       <Container fluid className="p-0 m-0 ms-md-2">
          <Row className="d-flex p-0 m-0">
@@ -54,7 +58,7 @@ const Header = (props) => {
             <CartModal
                show={showCart}
                onHide={() => setShowCart(false)}
-               closeModal={() => setShowCart(false)}
+               closeModal={closeModal}
                countItemsCart={props.countItemsCart}
             />
             <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">

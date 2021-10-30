@@ -5,11 +5,14 @@ import './LoginModal.css'
 import close from '../../../assets/img/close.svg'
 import { Field, reduxForm } from 'redux-form'
 import googleLogin from '../../../assets/img/google-login.png'
+import { ApiService } from '../../../api/api'
 
 const LoginModal = (props) => {
 
    let onSubmit = (formData) => {
-      console.log(formData)
+      ApiService.LoginUser(formData.login, formData.password)
+         .then((response) => console.log(response))
+         .catch(error => console.log(error))
    }
 
    const redirectToRegistration = () => {
@@ -53,8 +56,8 @@ let LoginForm = (props) => {
       <form onSubmit={props.handleSubmit} >
          <Container fluid >
             <Row>
-               <label className="login-lable p-0" htmlFor="email">Введіть електронну адресу</label>
-               <Field className="login-form-login" name="email" component="input" type="email" />
+               <label className="login-lable p-0" htmlFor="login">Введіть електронну адресу</label>
+               <Field className="login-form-login" name="login" component="input" type="text" />
             </Row>
             <Row className="pt-1 pb-1">
                <label className="login-lable p-0" htmlFor="password">Введіть пароль</label>

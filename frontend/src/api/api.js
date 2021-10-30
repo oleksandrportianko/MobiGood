@@ -5,7 +5,7 @@ const instance = axios.create({
 });
 
 export const ApiService = {
-  loginUser(login, password) {
-    return instance.post`users/`.then((response) => console.log(response)).catch((error) => error);
+  LoginUser(username, password) {
+    return instance.post('auth/', { username, password }).then((response) => response.data);
   },
 };
