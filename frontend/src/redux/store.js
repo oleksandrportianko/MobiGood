@@ -2,12 +2,12 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import headerReducer from './Reducers/headerReducer';
 import thunkMiddlware from 'redux-thunk';
 import cartReducer from './Reducers/cartReducer';
-import { reducer as formReducer } from 'redux-form';
+import authReducer from './Reducers/authReducer';
 
 let reducers = combineReducers({
   header: headerReducer,
   cart: cartReducer,
-  form: formReducer,
+  auth: authReducer,
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddlware));

@@ -3,7 +3,6 @@ import React from 'react'
 import { Col, Container, Image, Modal, Row } from 'react-bootstrap'
 import './RegistrationModal.css'
 import close from '../../../assets/img/close.svg'
-import { Field, reduxForm } from 'redux-form'
 import googleLogin from '../../../assets/img/google-login.png'
 
 const RegistrationModal = (props) => {
@@ -13,8 +12,8 @@ const RegistrationModal = (props) => {
    }
 
    const redirectToLogin = () => {
+      props.onHide();
       props.setShowLogin(true);
-      props.setShowRegistration(false);
    }
 
    return (
@@ -22,11 +21,11 @@ const RegistrationModal = (props) => {
          <Modal.Header className="registration-modal-header ps-2 p-1 p-sm-3 d-flex justify-content-between">
             <Container fluid className="registration-modal-title p-0 d-flex justify-content-between align-items-center">
                <p className="m-0 text-white"> Реєстрація </p>
-               <Image className="registration-modal-header-image-close" onClick={props.closeModal} width="20px" height="20px" src={close} />
+               <Image className="registration-modal-header-image-close" onClick={props.onHide} width="20px" height="20px" src={close} />
             </Container>
          </Modal.Header>
          <Modal.Body className="d-flex flex-column pb-0" >
-            <RegistrationFormRedux onSubmit={onSubmit} />
+            {/* <RegistrationFormRedux onSubmit={onSubmit} /> */}
          </Modal.Body>
          <Modal.Footer className="p-1 border-0">
             <Container fluid className="p-0 m-0">
@@ -51,7 +50,7 @@ const RegistrationModal = (props) => {
 let RegistrationForm = (props) => {
    return (
       <form onSubmit={props.handleSubmit} >
-         <Container fluid >
+         {/* <Container fluid >
             <Row>
                <label className="registration-lable p-0 m-0" htmlFor="email">Введіть електронну адресу</label>
                <Field className="registration-form-registration" name="email" component="input" type="email" />
@@ -73,13 +72,13 @@ let RegistrationForm = (props) => {
                   <button className="registration-form-submit">Зареєструватися</button>
                </Col>
             </Row>
-         </Container>
+         </Container> */}
       </form>
    )
 }
 
-let RegistrationFormRedux = reduxForm({
-   form: 'Registration'
-})(RegistrationForm)
+// let RegistrationFormRedux = reduxForm({
+//    form: 'Registration'
+// })(RegistrationForm)
 
 export default RegistrationModal

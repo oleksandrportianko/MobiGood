@@ -1,0 +1,9 @@
+.text-field-login-error-message {
+   font-size: 14px;
+   color: red;
+}
+
+.text-field-login-input {
+   border: none;
+   border-bottom: black;
+}

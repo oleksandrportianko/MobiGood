@@ -5,6 +5,8 @@ import Header from './Header';
 let mapStateToProps = (state) => {
   return {
     countItemsCart: state.cart.countItemsCart,
+    isAuth: state.auth.isAuth,
+    token: state.auth.token,
   };
 };
 

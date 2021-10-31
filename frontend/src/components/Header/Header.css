@@ -138,3 +138,13 @@
 .header-burger-menu-body {
    font-size: 11px;
 }
+
+.header-user-name {
+   overflow: hidden;
+}
+
+.header-logout-button {
+   border: none;
+   background-color: #FF4D00;
+   color: white;
+}
