@@ -21,8 +21,8 @@ const RegistrationModal = (props) => {
                <Image className="registration-modal-header-image-close" onClick={props.onHide} width="20px" height="20px" src={close} />
             </Container>
          </Modal.Header>
-         <Modal.Body className="d-flex flex-column pb-0" >
-            <RegistrationForm setAuthUserToken={props.setAuthUserToken} onHide={props.onHide} />
+         <Modal.Body className="d-flex flex-column pb-0">
+            <RegistrationForm registrationUser={props.registrationUser} onHide={props.onHide} />
          </Modal.Body>
          <Modal.Footer className="p-1 border-0">
             <Container fluid className="p-0 m-0">

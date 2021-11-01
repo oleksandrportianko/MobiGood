@@ -1,17 +1,13 @@
 import React from 'react'
-import { ApiService } from '../../../api/api';
 import './RegistrationForm.css'
 import { Formik, Form } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import TextField from '../LoginModal/TextField';
 import { Col } from 'react-bootstrap';
 import { validate } from '../../Common/Validate'
 
 const RegistrationForm = (props) => {
    let history = useHistory();
-
-   const [, setToken] = useCookies(['mytoken'])
 
    return (
       <Formik
@@ -21,11 +17,7 @@ const RegistrationForm = (props) => {
          }}
          validationSchema={validate}
          onSubmit={values => {
-            ApiService.RegistrationUser(values.login, values.password)
-               .then((response) => response.status === 201 ? ApiService.LoginUser(values.login, values.password) : null)
-               .then((resp) => props.setAuthUserToken(resp.token))
-               .then((resp) => setToken('mytoken', resp.token))
-               .catch(error => console.log(error))
+            props.registrationUser(values.login, values.password)
             props.onHide()
             history.push('/')
          }}

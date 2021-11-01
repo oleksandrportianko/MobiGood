@@ -22,7 +22,7 @@ const LoginModal = (props) => {
             </Container>
          </Modal.Header>
          <Modal.Body className="d-flex flex-column pb-0" >
-            <LoginForm token={props.token} loginUser={props.loginUser} setAuthUserToken={props.setAuthUserToken} onHide={props.onHide} />
+            <LoginForm loginUser={props.loginUser} onHide={props.onHide} />
          </Modal.Body>
          <Modal.Footer className="p-1 border-0">
             <Container fluid className="p-0 m-0">

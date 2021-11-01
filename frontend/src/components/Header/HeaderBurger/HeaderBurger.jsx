@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Image, Nav, Navbar, Offcanvas, Row } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
 import './HeaderBurger.css'
@@ -7,9 +7,29 @@ import logoText from '../../../assets/img/logo-text.svg'
 import login from '../../../assets/img/login.png'
 import menu from '../../../assets/img/menu.png'
 import close from '../../../assets/img/close.png'
+import { withCookies } from 'react-cookie'
 
 const HeaderBurger = (props) => {
    const [activeBurger, setActiveBurger] = useState(false);
+
+   const { cookies } = props;
+   let token = cookies.get('mytoken')
+
+   useEffect(() => {
+      setActiveBurger(false)
+   }, [token])
+
+   const removeCookiesToken = () => {
+      cookies.remove('mytoken');
+   }
+
+   const handleShow = () => {
+      setActiveBurger(true)
+   }
+
+   const handleClose = () => {
+      setActiveBurger(false)
+   }
 
    let menuItemsList = props.headerItems.map((m) => {
       return (
@@ -21,14 +41,6 @@ const HeaderBurger = (props) => {
          </NavLink>
       )
    })
-
-   const handleShow = () => {
-      setActiveBurger(true)
-   }
-
-   const handleClose = () => {
-      setActiveBurger(false)
-   }
 
    return (
       <Col xs={6} className="d-sm-none p-0 d-flex">
@@ -69,11 +81,15 @@ const HeaderBurger = (props) => {
                   <Nav className="py-2 px-3 border-bottom d-flex flex-column">
                      {menuItemsList}
                   </Nav>
-                  <Col className="d-flex align-items-center pt-1">
-                     <Image width="32px" height="32px" className="header-login-image" src={login} />
-                     <button onClick={() => props.setShowLogin(true)} className="header-burger-button-login bg-transparent text-black">Вхід</button>
-                     <button onClick={() => props.setShowRegistration(true)} className="header-burger-button-regitration bg-transparent text-black">Реєстрація</button>
-                  </Col>
+                  {token
+                     ? <Col className="header-user-name mt-2 mb-2 d-flex align-items-center justify-content-center">
+                        <button className="header-logout-button" onClick={removeCookiesToken}>{token}</button>
+                     </Col>
+                     : <Col className="d-flex align-items-center pt-1">
+                        <Image width="32px" height="32px" className="header-login-image" src={login} />
+                        <button onClick={() => props.setShowLogin(true)} className="header-burger-button-login bg-transparent text-black">Вхід</button>
+                        <button onClick={() => props.setShowRegistration(true)} className="header-burger-button-regitration bg-transparent text-black">Реєстрація</button>
+                     </Col>}
                </Offcanvas.Body>
             </Offcanvas>
          </Container>
@@ -81,4 +97,4 @@ const HeaderBurger = (props) => {
    )
 }
 
-export default HeaderBurger
+export default withCookies(HeaderBurger)
