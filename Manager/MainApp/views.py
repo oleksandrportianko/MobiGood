@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from .models import Categories, Smartphone
 from .serializers import UserSerializer, CategoriesSerializer, SmartphoneSerializer
 
+
+
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -23,7 +25,6 @@ class CustomObtainAuthToken(ObtainAuthToken):
 class CategoriesViewSet(viewsets.ModelViewSet):
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
-
 
 class SmartphoneViewSet(viewsets.ModelViewSet):
     queryset = Smartphone.objects.all()
