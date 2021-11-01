@@ -44,49 +44,26 @@ class Categories(models.Model):
         return reverse('categories_detail', kwargs={'slug': self.slug})
 
 
-class Product(models.Model):
+class Smartphone(models.Model):
 
-    class Meta:
-        abstract = True
-    CHOICES = [
-        ('#000000', 'Black'),
-        ('#696969', 'Grey'),
-        ('#0000FF', 'Blue'),
-        ('#008000', 'Green'),
-        ('#FF0000', 'Red'),
-        ('#D2691E', 'Orange'),
-        ('#DA70D6', 'Violet'),
-        ('#87CEFA', 'Light Blue'),
-        ('#FFFAFA', 'White'),
-        ('#FFC0CB', 'Pink'),
-    ]
+    # CHOICES = [
+    #     ('#000000', 'Black'),
+    #     ('#696969', 'Grey'),
+    #     ('#0000FF', 'Blue'),
+    #     ('#008000', 'Green'),
+    #     ('#FF0000', 'Red'),
+    #     ('#D2691E', 'Orange'),
+    #     ('#DA70D6', 'Violet'),
+    #     ('#87CEFA', 'Light Blue'),
+    #     ('#FFFAFA', 'White'),
+    #     ('#FFC0CB', 'Pink'),
+    # ]
 
     category = models.ForeignKey(Categories, verbose_name='Категорія', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='Назва товару')
     slug = models.SlugField(unique=True)
-    image1 = models.ImageField(verbose_name='Зображення (Колір 1)', default=None)
-    color1 = models.CharField(max_length=255, choices=CHOICES, default=None, verbose_name='Колір зображення 1')
-    image2 = models.ImageField(verbose_name='Зображення (Колір 2)', default=None)
-    color2 = models.CharField(max_length=255, choices=CHOICES, default=None, verbose_name='Колір зображення 2')
-    image3 = models.ImageField(verbose_name='Зображення (Колір 3)', default=None)
-    color3 = models.CharField(max_length=255, choices=CHOICES, default=None, verbose_name='Колір зображення 3')
-    image4 = models.ImageField(verbose_name='Зображення (Колір 4)', default=None)
-    color4 = models.CharField(max_length=255, choices=CHOICES, default=None, verbose_name='Колір зображення 4')
-    image5 = models.ImageField(verbose_name='Зображення (Колір 5)', default=None)
-    color5 = models.CharField(max_length=255, choices=CHOICES, default=None, verbose_name='Колір зображення 5')
-    image6 = models.ImageField(verbose_name='Зображення (Колір 6)', default=None)
-    color6 = models.CharField(max_length=255, choices=CHOICES, default=None, verbose_name='Колір зображення 6')
     description = models.TextField(verbose_name='Опис', null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Ціна')
-
-    def __str__(self):
-        return self.title
-
-    def get_model_name(self):
-        return self.__class__.__name__.lower()
-
-
-class Smartphone(Product):
 
     display = models.CharField(max_length=255, verbose_name='Діагональ, розширення, тип, інші особливості')
     battery = models.CharField(max_length=255, verbose_name="Об`єм акумулятора")
@@ -100,5 +77,8 @@ class Smartphone(Product):
 
     def get_absolute_url(self):
         return get_product_url(self, 'product_detail')
+
+    def get_model_name(self):
+        return self.__class__.__name__.lower()
 
 

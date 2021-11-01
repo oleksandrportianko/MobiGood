@@ -4,13 +4,15 @@ from django.conf.urls.static import static
 
 from rest_framework.routers import DefaultRouter
 
-from .views import UserViewSet
+from .views import UserViewSet, CategoriesViewSet, SmartphoneViewSet
 
 
 
 
 router = DefaultRouter()
 router.register('users', UserViewSet)
+router.register('categories', CategoriesViewSet)
+router.register('smartphones', SmartphoneViewSet)
 
 
 
