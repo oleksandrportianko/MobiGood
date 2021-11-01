@@ -1,0 +1,9 @@
+.registration-form-button-submit {
+   background-color: #FF4D00;
+   width: 140px;
+   height: 40px;
+   border: none;
+   color: white;
+   border-radius: 8px;
+   text-align: center;
+}

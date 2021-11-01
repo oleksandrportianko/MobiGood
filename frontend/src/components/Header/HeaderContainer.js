@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Header from './Header';
+import { setAuthUserToken, loginUser } from '../../redux/Reducers/authReducer';
 
 let mapStateToProps = (state) => {
   return {
@@ -10,8 +11,4 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default compose(connect(mapStateToProps, mapDispatchToProps))(Header);
+export default compose(connect(mapStateToProps, { setAuthUserToken, loginUser }))(Header);

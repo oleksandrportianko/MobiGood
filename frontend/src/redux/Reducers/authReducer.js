@@ -23,4 +23,10 @@ let authReducer = (state = initialState, action) => {
 
 export const setAuthUserToken = (token) => ({ type: SET_AUTH_USER_TOKEN, token });
 
+export const loginUser = (username, password) => (dispatch) => {
+  return ApiService.LoginUser(username, password).then((data) => {
+    dispatch(setAuthUserToken(data.token));
+  });
+};
+
 export default authReducer;

@@ -10,11 +10,11 @@ const LoginModal = (props) => {
 
    const redirectToRegistration = () => {
       props.onHide()
-      props.setshowregistration()
+      props.setShowRegistration()
    }
 
    return (
-      <Modal {...props} size="md" aria-labelledby="login-modal" centered>
+      <Modal show={props.show} size="md" aria-labelledby="login-modal" centered>
          <Modal.Header className="login-modal-header ps-2 p-1 p-sm-3 d-flex justify-content-between">
             <Container fluid className="login-modal-title p-0 d-flex justify-content-between align-items-center">
                <p className="m-0 text-white"> Вхід </p>
@@ -22,7 +22,7 @@ const LoginModal = (props) => {
             </Container>
          </Modal.Header>
          <Modal.Body className="d-flex flex-column pb-0" >
-            <LoginForm setAuthUserToken={props.setAuthUserToken} onHide={props.onHide} />
+            <LoginForm token={props.token} loginUser={props.loginUser} setAuthUserToken={props.setAuthUserToken} onHide={props.onHide} />
          </Modal.Body>
          <Modal.Footer className="p-1 border-0">
             <Container fluid className="p-0 m-0">
@@ -36,7 +36,7 @@ const LoginModal = (props) => {
                      </Col>
                   </Row>
                   <span>Не зареєстровані?</span>
-                  <Button className="login-modal-button-to-registration" onClick={redirectToRegistration}>Зареєструватися</Button>
+                  <Button onClick={() => redirectToRegistration()} className="login-modal-button-to-registration" >Зареєструватися</Button>
                </Col>
             </Container>
          </Modal.Footer>

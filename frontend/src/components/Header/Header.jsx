@@ -8,9 +8,10 @@ import cart from '../../assets/img/cart.png'
 import { Link, NavLink } from 'react-router-dom'
 import HeaderBurgerContainer from './HeaderBurger/HeaderBurgerContainer'
 import CartModal from './CartModal/CartModal'
-import LoginModalContainer from './LoginModal/LoginModalContainer'
+import LoginModal from './LoginModal/LoginModal'
 import RegistrationModal from './RegistraionModal/RegistrationModal'
 import { withCookies } from 'react-cookie'
+
 
 const Header = (props) => {
 
@@ -62,10 +63,10 @@ const Header = (props) => {
             <CartModal
                show={showCart}
                onHide={() => setShowCart(false)}
-               countitemscart={props.countItemsCart}
+               countItemsCart={props.countItemsCart}
             />
             {token
-               ? <Col sm="auto" md={1} lg={1} xl={1} className="header-user-name d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
+               ? <Col sm="auto" md={1} lg={1} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
                   <button className="header-logout-button" onClick={removeCookiesToken}>{token}</button>
                </Col>
                : <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
@@ -74,15 +75,19 @@ const Header = (props) => {
                   <button onClick={() => setShowRegistration(true)} className="header-button-regitration bg-transparent text-black">Реєстрація</button>
                </Col>
             }
-            <LoginModalContainer
+            <LoginModal
                show={showLogin}
                onHide={() => setShowLogin(false)}
-               setshowregistration={setShowRegistration}
+               setAuthUserToken={props.setAuthUserToken}
+               setShowRegistration={() => setShowRegistration(true)}
+               loginUser={props.loginUser}
+               token={props.token}
             />
             <RegistrationModal
                show={showRegistration}
                onHide={() => setShowRegistration(false)}
                setShowLogin={setShowLogin}
+               setAuthUserToken={props.setAuthUserToken}
             />
          </Row>
       </Container >
