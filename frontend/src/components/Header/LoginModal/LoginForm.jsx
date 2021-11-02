@@ -1,6 +1,6 @@
 import { Col } from 'react-bootstrap'
 import { Formik, Form } from 'formik'
-import { validate } from '../../Common/Validate'
+import { loginValidate } from '../../Common/Validate'
 import TextField from './TextField';
 import './LoginForm.css'
 import { useHistory } from "react-router-dom";
@@ -14,7 +14,7 @@ let LoginForm = (props) => {
             login: '',
             password: '',
          }}
-         validationSchema={validate}
+         validationSchema={loginValidate}
          onSubmit={values => {
             props.loginUser(values.login, values.password)
             props.onHide()

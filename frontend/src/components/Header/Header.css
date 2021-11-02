@@ -145,6 +145,15 @@
 
 .header-logout-button {
    border: none;
-   background-color: #FF4D00;
-   color: white;
+   background-color: transparent;
+   color: black;
+   border: 1px solid #FF4D00;
+   border-radius: 6px;
+   font-weight: 500;
+   font-family: 'Montserrat';
+}
+
+.header-name-user {
+   color: black;
+   font-family: 'Montserrat';
 }

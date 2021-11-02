@@ -83,7 +83,8 @@ const HeaderBurger = (props) => {
                   </Nav>
                   {token
                      ? <Col className="header-user-name mt-2 mb-2 d-flex align-items-center justify-content-center">
-                        <button className="header-logout-button" onClick={removeCookiesToken}>{token}</button>
+                        <p className="header-name-user m-0 me-2">{props.login}</p>
+                        <button className="header-logout-button" onClick={removeCookiesToken}>Вийти</button>
                      </Col>
                      : <Col className="d-flex align-items-center pt-1">
                         <Image width="32px" height="32px" className="header-login-image" src={login} />
