@@ -12,12 +12,17 @@ import LoginModal from './LoginModal/LoginModal'
 import RegistrationModal from './RegistraionModal/RegistrationModal'
 import { withCookies } from 'react-cookie'
 
-
 const Header = (props) => {
 
    const { cookies } = props;
    let token = cookies.get('mytoken')
    let id = cookies.get('id')
+
+   useEffect(() => {
+      if (token) {
+         props.getUserInfo(id)
+      }
+   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
    const removeCookiesToken = () => {
       cookies.remove('mytoken');
@@ -27,12 +32,6 @@ const Header = (props) => {
    const [showCart, setShowCart] = useState(false);
    const [showLogin, setShowLogin] = useState(false);
    const [showRegistration, setShowRegistration] = useState(false);
-
-   useEffect(() => {
-      if (token) {
-         props.getUserInfo(id)
-      }
-   }, [])
 
    return (
       <Container fluid className="p-0 m-0 ms-md-2">
@@ -74,7 +73,7 @@ const Header = (props) => {
                countItemsCart={props.countItemsCart}
             />
             {token
-               ? <Col sm="auto" md={1} lg={1} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-center">
+               ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-center">
                   <p className="header-name-user m-0 me-2">{props.login}</p>
                   <button className="header-logout-button" onClick={removeCookiesToken}>Вийти</button>
                </Col>

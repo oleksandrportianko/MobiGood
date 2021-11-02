@@ -33,6 +33,7 @@ export const setRegistrationUser = (token) => ({ type: SET_REGISTRATION_USER, to
 export const loginUser = (username, password) => (dispatch) => {
   return ApiService.LoginUser(username, password).then((data) => {
     dispatch(setAuthUser(data.token, data.id));
+    window.location.reload();
   });
 };
 
@@ -44,6 +45,7 @@ export const registrationUser =
       )
       .then((resp) => {
         dispatch(setAuthUser(resp.token, resp.id));
+        window.location.reload();
       });
   };
 
