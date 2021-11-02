@@ -33,5 +33,11 @@ class SmartphoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Smartphone
         fields = ['id', 'category', 'title', 'slug', 'description', 'price',
-                  'display', 'battery', 'memory', 'main_cam_mp',
-                  'frontal_cam_mp', 'soc']
+                 'image1', 'color1',
+                 'image2', 'color2',
+                 'image3', 'color3',
+                 'image4', 'color4',
+                 'image5', 'color5',
+                 'image6', 'color6',
+                 'display', 'battery', 'memory', 'main_cam_mp',
+                 'frontal_cam_mp', 'soc']
