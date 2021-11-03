@@ -15,24 +15,24 @@ import { withCookies } from 'react-cookie'
 const Header = (props) => {
 
    const { cookies } = props;
-   let token = cookies.get('mytoken')
-   let id = cookies.get('id')
-
-   useEffect(() => {
-      if (token) {
-         props.getUserInfo(id)
-      }
-   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+   let token = cookies.get('mytoken');
+   let id = cookies.get('id');
 
    const removeCookiesToken = () => {
       cookies.remove('mytoken');
       cookies.remove('id');
-   }
+      props.setLogoutUser();
+   };
+
+   useEffect(() => {
+      if (token) {
+         props.getUserInfo(id);
+      }
+   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
    const [showCart, setShowCart] = useState(false);
    const [showLogin, setShowLogin] = useState(false);
    const [showRegistration, setShowRegistration] = useState(false);
-
    return (
       <Container fluid className="p-0 m-0 ms-md-2">
          <Row className="d-flex p-0 m-0">
@@ -72,7 +72,7 @@ const Header = (props) => {
                onHide={() => setShowCart(false)}
                countItemsCart={props.countItemsCart}
             />
-            {token
+            {props.isAuth
                ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-center">
                   <p className="header-name-user m-0 me-2">{props.login}</p>
                   <button className="header-logout-button" onClick={removeCookiesToken}>Вийти</button>

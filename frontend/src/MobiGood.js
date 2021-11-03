@@ -9,7 +9,7 @@ import ForAuto from './components/MainContent/ForAuto/ForAuto';
 import AboutUs from './components/MainContent/AboutUs/AboutUs';
 import { withCookies } from 'react-cookie';
 
-function MobiGood() {
+function MobiGood(props) {
   return (
     <div className="MobiGood">
       <div className="header">

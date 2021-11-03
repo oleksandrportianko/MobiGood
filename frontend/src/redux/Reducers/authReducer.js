@@ -3,11 +3,16 @@ import AddCookies from '../../components/Common/addCookies';
 
 const SET_AUTH_USER = 'SET-AUTH-USER';
 const SET_REGISTRATION_USER = 'SET-REGISTRATION-USER';
+const SET_USER_INFO = 'SET-USER-INFO';
+const SET_LOGOUT_USER = 'SET-LOGOUT-USER';
 
 let initialState = {
   isAuth: false,
-  token: '',
   id: '',
+  firstName: '',
+  lastName: '',
+  login: '',
+  email: '',
 };
 
 let authReducer = (state = initialState, action) => {
@@ -16,9 +21,30 @@ let authReducer = (state = initialState, action) => {
       AddCookies('mytoken', action.token);
       AddCookies('id', action.id);
       return {
+        ...state,
         isAuth: true,
-        token: action.token,
         id: action.id,
+      };
+    }
+    case SET_USER_INFO: {
+      return {
+        ...state,
+        isAuth: true,
+        id: action.id,
+        firstName: action.firstName,
+        lastName: action.lastName,
+        email: action.email,
+        login: action.login,
+      };
+    }
+    case SET_LOGOUT_USER: {
+      return {
+        isAuth: false,
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        login: '',
       };
     }
     default: {
@@ -29,11 +55,44 @@ let authReducer = (state = initialState, action) => {
 
 export const setAuthUser = (token, id) => ({ type: SET_AUTH_USER, token, id });
 export const setRegistrationUser = (token) => ({ type: SET_REGISTRATION_USER, token });
+export const setLogoutUser = () => ({ type: SET_LOGOUT_USER });
+export const setUserInfo = (id, login, firstName, lastName, email) => ({
+  type: SET_USER_INFO,
+  id,
+  login,
+  firstName,
+  lastName,
+  email,
+});
+
+export const getUserInfo = (id) => (dispatch) => {
+  return ApiService.GetUserInfo(id).then((response) => {
+    dispatch(
+      setUserInfo(
+        response.id,
+        response.username,
+        response.first_name,
+        response.last_name,
+        response.email,
+      ),
+    );
+  });
+};
 
 export const loginUser = (username, password) => (dispatch) => {
   return ApiService.LoginUser(username, password).then((data) => {
     dispatch(setAuthUser(data.token, data.id));
-    window.location.reload();
+    ApiService.GetUserInfo(data.id).then((response) => {
+      dispatch(
+        setUserInfo(
+          response.id,
+          response.first_name,
+          response.last_name,
+          response.email,
+          response.username,
+        ),
+      );
+    });
   });
 };
 
@@ -45,7 +104,17 @@ export const registrationUser =
       )
       .then((resp) => {
         dispatch(setAuthUser(resp.token, resp.id));
-        window.location.reload();
+        ApiService.GetUserInfo(resp.id).then((response) => {
+          dispatch(
+            setUserInfo(
+              response.id,
+              response.first_name,
+              response.last_name,
+              response.email,
+              response.username,
+            ),
+          );
+        });
       });
   };
 
