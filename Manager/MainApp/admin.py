@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categories, Smartphone
+from .models import Categories, Smartphone, User
 
 
 # Register your models here.
@@ -13,3 +13,8 @@ class CategoriesModel(admin.ModelAdmin):
 class SmartphonesModel(admin.ModelAdmin):
     list_filter = ('title', 'slug')
     list_display = ('title', 'slug')
+
+@admin.register(User)
+class UserModel(admin.ModelAdmin):
+    list_filter = ('id', 'username')
+    list_display = ('id', 'username')

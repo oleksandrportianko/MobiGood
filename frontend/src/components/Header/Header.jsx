@@ -16,17 +16,15 @@ const Header = (props) => {
 
    const { cookies } = props;
    let token = cookies.get('mytoken');
-   let id = cookies.get('id');
 
    const removeCookiesToken = () => {
       cookies.remove('mytoken');
-      cookies.remove('id');
       props.setLogoutUser();
    };
 
    useEffect(() => {
       if (token) {
-         props.getUserInfo(id);
+         props.getUserInfo();
       }
    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

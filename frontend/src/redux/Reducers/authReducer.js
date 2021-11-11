@@ -1,5 +1,4 @@
 import { ApiService } from '../../api/api';
-import AddCookies from '../../components/Common/addCookies';
 
 const SET_AUTH_USER = 'SET-AUTH-USER';
 const SET_REGISTRATION_USER = 'SET-REGISTRATION-USER';
@@ -18,8 +17,6 @@ let initialState = {
 let authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_AUTH_USER: {
-      AddCookies('mytoken', action.token);
-      AddCookies('id', action.id);
       return {
         ...state,
         isAuth: true,
@@ -65,8 +62,8 @@ export const setUserInfo = (id, login, firstName, lastName, email) => ({
   email,
 });
 
-export const getUserInfo = (id) => (dispatch) => {
-  return ApiService.GetUserInfo(id).then((response) => {
+export const getUserInfo = () => (dispatch) => {
+  return ApiService.GetUserInfo().then((response) => {
     dispatch(
       setUserInfo(
         response.id,
@@ -82,17 +79,17 @@ export const getUserInfo = (id) => (dispatch) => {
 export const loginUser = (username, password) => (dispatch) => {
   return ApiService.LoginUser(username, password).then((data) => {
     dispatch(setAuthUser(data.token, data.id));
-    ApiService.GetUserInfo(data.id).then((response) => {
-      dispatch(
-        setUserInfo(
-          response.id,
-          response.first_name,
-          response.last_name,
-          response.email,
-          response.username,
-        ),
-      );
-    });
+    // ApiService.GetUserInfo().then((response) => {
+    //   dispatch(
+    //     setUserInfo(
+    //       response.id,
+    //       response.first_name,
+    //       response.last_name,
+    //       response.email,
+    //       response.username,
+    //     ),
+    //   );
+    // });
   });
 };
 
@@ -104,7 +101,7 @@ export const registrationUser =
       )
       .then((resp) => {
         dispatch(setAuthUser(resp.token, resp.id));
-        ApiService.GetUserInfo(resp.id).then((response) => {
+        ApiService.GetUserInfo().then((response) => {
           dispatch(
             setUserInfo(
               response.id,
