@@ -7,6 +7,7 @@ import {
   loginUser,
   registrationUser,
   setLogoutUser,
+  logoutUser,
 } from '../../redux/Reducers/authReducer';
 
 let mapStateToProps = (state) => {
@@ -28,5 +29,6 @@ export default compose(
     loginUser,
     registrationUser,
     setLogoutUser,
+    logoutUser,
   }),
 )(Header);

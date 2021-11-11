@@ -50,8 +50,8 @@ let authReducer = (state = initialState, action) => {
   }
 };
 
-export const setAuthUser = (token, id) => ({ type: SET_AUTH_USER, token, id });
-export const setRegistrationUser = (token) => ({ type: SET_REGISTRATION_USER, token });
+export const setAuthUser = (id) => ({ type: SET_AUTH_USER, id });
+export const setRegistrationUser = () => ({ type: SET_REGISTRATION_USER });
 export const setLogoutUser = () => ({ type: SET_LOGOUT_USER });
 export const setUserInfo = (id, login, firstName, lastName, email) => ({
   type: SET_USER_INFO,
@@ -76,20 +76,26 @@ export const getUserInfo = () => (dispatch) => {
   });
 };
 
+export const logoutUser = () => (dispatch) => {
+  return ApiService.LogoutUser().then((response) => {
+    dispatch(setLogoutUser());
+  });
+};
+
 export const loginUser = (username, password) => (dispatch) => {
   return ApiService.LoginUser(username, password).then((data) => {
-    dispatch(setAuthUser(data.token, data.id));
-    // ApiService.GetUserInfo().then((response) => {
-    //   dispatch(
-    //     setUserInfo(
-    //       response.id,
-    //       response.first_name,
-    //       response.last_name,
-    //       response.email,
-    //       response.username,
-    //     ),
-    //   );
-    // });
+    dispatch(setAuthUser(data.id));
+    ApiService.GetUserInfo().then((response) => {
+      dispatch(
+        setUserInfo(
+          response.id,
+          response.username,
+          response.first_name,
+          response.last_name,
+          response.email,
+        ),
+      );
+    });
   });
 };
 
@@ -97,18 +103,17 @@ export const registrationUser =
   (username, password, first_name, last_name, email) => (dispatch) => {
     return ApiService.RegistrationUser(username, password, first_name, last_name, email)
       .then((response) =>
-        response.status === 201 ? ApiService.LoginUser(username, password) : null,
+        response.status === 200 ? ApiService.LoginUser(username, password) : null,
       )
-      .then((resp) => {
-        dispatch(setAuthUser(resp.token, resp.id));
+      .then((response) => {
         ApiService.GetUserInfo().then((response) => {
           dispatch(
             setUserInfo(
               response.id,
+              response.username,
               response.first_name,
               response.last_name,
               response.email,
-              response.username,
             ),
           );
         });

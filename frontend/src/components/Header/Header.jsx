@@ -10,23 +10,15 @@ import HeaderBurger from './HeaderBurger/HeaderBurger'
 import CartModal from './CartModal/CartModal'
 import LoginModal from './LoginModal/LoginModal'
 import RegistrationModal from './RegistraionModal/RegistrationModal'
-import { withCookies } from 'react-cookie'
 
 const Header = (props) => {
-
-   const { cookies } = props;
-   let token = cookies.get('mytoken');
-
-   const removeCookiesToken = () => {
-      cookies.remove('mytoken');
-      props.setLogoutUser();
-   };
-
    useEffect(() => {
-      if (token) {
-         props.getUserInfo();
-      }
+      props.getUserInfo();
    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+   let setLogoutUser = () => {
+      props.logoutUser()
+   }
 
    const [showCart, setShowCart] = useState(false);
    const [showLogin, setShowLogin] = useState(false);
@@ -73,7 +65,7 @@ const Header = (props) => {
             {props.isAuth
                ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-center">
                   <p className="header-name-user m-0 me-2">{props.login}</p>
-                  <button className="header-logout-button" onClick={removeCookiesToken}>Вийти</button>
+                  <button onClick={setLogoutUser} className="header-logout-button">Вийти</button>
                </Col>
                : <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
                   <Image width="32px" height="32px" className="header-login-image" src={login} />
@@ -100,4 +92,4 @@ const Header = (props) => {
    )
 }
 
-export default withCookies(Header)
+export default Header

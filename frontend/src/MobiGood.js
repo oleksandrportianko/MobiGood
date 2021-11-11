@@ -7,7 +7,6 @@ import Phones from './components/MainContent/Phones/Phones';
 import './MobiGood.css';
 import ForAuto from './components/MainContent/ForAuto/ForAuto';
 import AboutUs from './components/MainContent/AboutUs/AboutUs';
-import { withCookies } from 'react-cookie';
 
 function MobiGood(props) {
   return (
@@ -29,4 +28,4 @@ function MobiGood(props) {
   );
 }
 
-export default withCookies(MobiGood);
+export default MobiGood;
