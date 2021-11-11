@@ -1,8 +1,19 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import AbstractUser
 
 
+class User(AbstractUser):
+    name = models.CharField(max_length=255)
+    email = models.CharField(max_length=255, unique=True)
+    password = models.CharField(max_length=255)
+    username = models.CharField(max_length=255, unique=True)
 
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = []
+
+#--------------------------------------------------------------------
+#shop model
 def get_models_for_count(*model_names):
     return [models.Count(model_name) for model_name in model_names]
 
@@ -50,6 +61,7 @@ class Product(models.Model):
         abstract = True
 
     COLOR_CHOICES = [
+        (None, 'NoColor'),
         ('#000000', 'Black'),
         ('#696969', 'Grey'),
         ('#0000FF', 'Blue'),
@@ -69,22 +81,22 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Ціна')
 
     image1 = models.ImageField(verbose_name='Зображення 1', blank=True)
-    color1 = models.CharField(max_length=100, verbose_name='Колір зображення 1', choices=COLOR_CHOICES, blank=True, default=None)
+    color1 = models.CharField(max_length=100, verbose_name='Колір зображення 1', choices=COLOR_CHOICES, blank=True)
 
     image2 = models.ImageField(verbose_name='Зображення 2', blank=True)
-    color2 = models.CharField(max_length=100, verbose_name='Колір зображення 2', choices=COLOR_CHOICES, blank=True, default=None)
+    color2 = models.CharField(max_length=100, verbose_name='Колір зображення 2', choices=COLOR_CHOICES, blank=True)
 
     image3 = models.ImageField(verbose_name='Зображення 3', blank=True)
-    color3 = models.CharField(max_length=100, verbose_name='Колір зображення 3', choices=COLOR_CHOICES, blank=True, default=None)
+    color3 = models.CharField(max_length=100, verbose_name='Колір зображення 3', choices=COLOR_CHOICES, blank=True)
 
     image4 = models.ImageField(verbose_name='Зображення 4', blank=True)
-    color4 = models.CharField(max_length=100, verbose_name='Колір зображення 4', choices=COLOR_CHOICES, blank=True, default=None)
+    color4 = models.CharField(max_length=100, verbose_name='Колір зображення 4', choices=COLOR_CHOICES, blank=True)
 
     image5 = models.ImageField(verbose_name='Зображення 5', blank=True)
-    color5 = models.CharField(max_length=100, verbose_name='Колір зображення 5', choices=COLOR_CHOICES, blank=True, default=None)
+    color5 = models.CharField(max_length=100, verbose_name='Колір зображення 5', choices=COLOR_CHOICES, blank=True)
 
     image6 = models.ImageField(verbose_name='Зображення 6', blank=True)
-    color6 = models.CharField(max_length=100, verbose_name='Колір зображення 6', choices=COLOR_CHOICES, blank=True, default=None)
+    color6 = models.CharField(max_length=100, verbose_name='Колір зображення 6', choices=COLOR_CHOICES, blank=True)
 
     def __str__(self):
         return self.title

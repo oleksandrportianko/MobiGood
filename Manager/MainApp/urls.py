@@ -4,20 +4,23 @@ from django.conf.urls.static import static
 
 from rest_framework.routers import DefaultRouter
 
-from .views import UserViewSet, CategoriesViewSet, SmartphoneViewSet, CustomObtainAuthToken
+from .views import CategoriesViewSet, SmartphoneViewSet, RegisterView, LoginView, UserView, LogoutView
 
 
 
 router = DefaultRouter()
-router.register('users', UserViewSet)
 router.register('cat', CategoriesViewSet)
 router.register('smphones', SmartphoneViewSet)
 
 
 
+
 urlpatterns = [
     path('mainapp/', include(router.urls)),
-    path('auth/', CustomObtainAuthToken.as_view()),
+    path('register/', RegisterView.as_view()),
+    path('login/', LoginView.as_view()),
+    path('user/', UserView.as_view()),
+    path('logout/', LogoutView.as_view()),
 ]
 
 if settings.DEBUG:
