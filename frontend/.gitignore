@@ -4,7 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-/__pycache__
+/Manager/MainApp/__pycache__
+/Manager/MainApp/migrations/__pycache__
+/Manager/Manager/__pycache__
 
 # testing
 /coverage
