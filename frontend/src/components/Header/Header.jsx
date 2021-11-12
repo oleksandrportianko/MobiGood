@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
 import { Col, Container, Image, Nav, Row } from 'react-bootstrap'
+import profile from '../../assets/img/profile.png'
 import logo from '../../assets/img/logo.svg'
 import logoText from '../../assets/img/logo-text.svg'
 import login from '../../assets/img/login.png'
@@ -37,7 +38,7 @@ const Header = (props) => {
                   <p className="border-under-img"></p>
                </Col>
             </Col>
-            <HeaderBurger login={props.login} headerItems={props.headerItems} setShowLogin={setShowLogin} setShowRegistration={setShowRegistration} />
+            <HeaderBurger logoutUser={props.logoutUser} isAuth={props.isAuth} login={props.login} headerItems={props.headerItems} setShowLogin={setShowLogin} setShowRegistration={setShowRegistration} />
             <Col sm="auto" md={3} lg={4} xl={4} className="header-navigation-container d-none d-sm-flex me-sm-4 me-md-0 me-xl-5 p-0 m-0">
                <Nav className="ml-3">
                   <NavLink className="header-nav-link text-decoration-none text-dark" activeClassName="header-nav-active" to="/phones"><Nav.Item className="header-nav-item">Телефони</Nav.Item></NavLink>
@@ -63,9 +64,11 @@ const Header = (props) => {
                countItemsCart={props.countItemsCart}
             />
             {props.isAuth
-               ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-center">
-                  <p className="header-name-user m-0 me-2">{props.login}</p>
-                  <button onClick={setLogoutUser} className="header-logout-button">Вийти</button>
+               ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-end">
+                  <Link className="header-profile-none d-flex flex-row align-items-center border border-0" to="/profile">
+                     <p className="m-0 me-2"><Image src={profile} width="28px" height="28px"></Image></p>
+                     <p className="header-name-user m-0 me-2">{props.login}</p>
+                  </Link>
                </Col>
                : <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
                   <Image width="32px" height="32px" className="header-login-image" src={login} />
