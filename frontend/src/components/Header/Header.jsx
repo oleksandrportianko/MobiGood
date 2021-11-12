@@ -74,18 +74,18 @@ const Header = (props) => {
                countItemsCart={props.countItemsCart}
             />
             {props.isAuth
-               ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-end">
-                  <div onMouse={setFocusProfileActive} className="d-flex flex-row align-items-center">
+               ? <Col onMouseOver={setFocusProfileActive} onMouseOut={setFocusProfileNone} sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-end">
+                  <div className="d-flex flex-row align-items-center">
                      <p className="m-0 me-2"><Image src={profile} width="28px" height="28px" /></p>
                      <p className="header-name-user m-0 me-2">{props.login}</p>
+                     {focusProfile ?
+                        <div className="header-profile-menu-active">
+                           <Link className="header-profile-profile-link d-flex flex-row align-items-center border border-0" to="/profile">
+                              <p>Мій профіль</p>
+                           </Link>
+                        </div>
+                        : null}
                   </div>
-                  {focusProfile ?
-                     <div className="header-profile-menu-active">
-                        <Link className="header-profile-profile-link d-flex flex-row align-items-center border border-0" to="/profile">
-                           <p>Мій профіль</p>
-                        </Link>
-                     </div>
-                     : null}
                </Col>
                : <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">
                   <Image width="32px" height="32px" className="header-login-image" src={login} />
