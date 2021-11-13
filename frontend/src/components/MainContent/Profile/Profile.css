@@ -1,7 +1,7 @@
 .profile-container {
    border-radius: 30px;
-   margin-top: 10px;
-   margin-bottom: 10px;
+   margin-top: 20px;
+   margin-bottom: 30px;
 }
 
 .profile-title-name {
@@ -45,3 +45,41 @@
    background: rgb(246, 237, 255);
    margin-right: 10px;
 }
+
+.rersonal-data-label {
+   font-size: 14px;
+   opacity: 0.4;
+}
+
+.personal-data-edit-button {
+   border: none;
+   width: 180px;
+   height: 40px;
+   background-color: #FF4D00;
+   border-radius: 11px;
+   color: white;
+}
+
+.personal-data-edit-button:hover {
+   box-shadow: 2px 3px 2px #ffa781;
+}
+
+.personal-data-change-password-title {
+   font-size: 24px;
+   font-weight: 500;
+}
+
+.personal-data-password-change-input {
+   width: 250px;
+   height: 40px;
+   border: 1px solid black;
+   background-color: transparent;
+   font-size: 22px;
+   border-radius: 10px;
+   padding-left: 5px;
+}
+
+.personal-data-password-change-input:active {
+   text-decoration: none;
+   border: 1px solid #FF4D00;
+} 
