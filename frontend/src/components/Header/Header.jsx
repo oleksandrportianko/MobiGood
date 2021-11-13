@@ -17,10 +17,6 @@ const Header = (props) => {
       props.getUserInfo();
    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-   let setLogoutUser = () => {
-      props.logoutUser()
-   }
-
    const [showCart, setShowCart] = useState(false);
    const [showLogin, setShowLogin] = useState(false);
    const [showRegistration, setShowRegistration] = useState(false);

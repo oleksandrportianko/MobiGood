@@ -1,0 +1,47 @@
+.profile-container {
+   border-radius: 30px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+
+.profile-title-name {
+   font-size: 18px;
+}
+
+.profile-title-email {
+   font-size: 14px;
+}
+
+.profile-nav-list {
+   list-style: none;
+}
+
+.profile-nav-list li {
+   margin: 10px;
+   border: 2px solid white;
+   padding: 3px;
+}
+
+.profile-nav-list li:hover {
+   border: 2px solid rgb(246, 237, 255);
+   border-radius: 10px;
+   box-shadow: 2px 2px 2px rgb(206, 205, 206);
+}
+
+.active-nav-item {
+   background: rgb(246, 237, 255);
+   border-radius: 10px;
+}
+
+.profile-content-title {
+   font-size: 24px;
+   font-weight: 500;
+}
+
+.profile-nav-image {
+   width: 48px;
+   height: 48px;
+   border-radius: 50%;
+   background: rgb(246, 237, 255);
+   margin-right: 10px;
+}

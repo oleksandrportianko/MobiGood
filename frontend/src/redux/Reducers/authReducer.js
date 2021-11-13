@@ -62,7 +62,7 @@ export const setUserInfo = (id, login, firstName, lastName, email) => ({
   email,
 });
 
-export const getUserInfo = () => (dispatch) => {
+export const getUserInfo = () => async (dispatch) => {
   return ApiService.GetUserInfo().then((response) => {
     dispatch(
       setUserInfo(
@@ -76,13 +76,13 @@ export const getUserInfo = () => (dispatch) => {
   });
 };
 
-export const logoutUser = () => (dispatch) => {
+export const logoutUser = () => async (dispatch) => {
   return ApiService.LogoutUser().then((response) => {
     dispatch(setLogoutUser());
   });
 };
 
-export const loginUser = (username, password) => (dispatch) => {
+export const loginUser = (username, password) => async (dispatch) => {
   return ApiService.LoginUser(username, password).then((data) => {
     dispatch(setAuthUser(data.id));
     ApiService.GetUserInfo().then((response) => {
@@ -100,7 +100,7 @@ export const loginUser = (username, password) => (dispatch) => {
 };
 
 export const registrationUser =
-  (username, password, first_name, last_name, email) => (dispatch) => {
+  (username, password, first_name, last_name, email) => async (dispatch) => {
     return ApiService.RegistrationUser(username, password, first_name, last_name, email)
       .then((response) =>
         response.status === 200 ? ApiService.LoginUser(username, password) : null,
