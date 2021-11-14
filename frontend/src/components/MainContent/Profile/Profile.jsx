@@ -13,7 +13,7 @@ import SelectedProducts from './SelectedProducts'
 import MyBonuse from './MyBonuse'
 import logout from '../../../assets/img/logout.png'
 import { logoutUser } from '../../../redux/Reducers/authReducer'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router';
 
 const Profile = () => {
    const email = useSelector((state) => state.auth.email)
