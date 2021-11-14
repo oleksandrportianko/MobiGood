@@ -1,14 +1,11 @@
 import React from 'react'
 import './RegistrationForm.css'
 import { Formik, Form } from 'formik';
-import { useHistory } from 'react-router-dom';
 import TextField from '../LoginModal/TextField';
 import { Col } from 'react-bootstrap';
 import { registrationValidate } from '../../Common/Validate'
 
 const RegistrationForm = (props) => {
-   let history = useHistory();
-
    return (
       <Formik
          initialValues={{
@@ -22,7 +19,6 @@ const RegistrationForm = (props) => {
          onSubmit={values => {
             props.registrationUser(values.login, values.password, values.first_name, values.last_name, values.email)
             props.onHide()
-            history.push('/')
          }}
       >
          {formik => (

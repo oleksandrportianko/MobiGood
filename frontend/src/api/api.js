@@ -19,6 +19,6 @@ export const ApiService = {
     return instance.get(`user/`).then((response) => response.data);
   },
   GetPhonesData() {
-    return instance.get('mainapp/smphones/').then((response) => console.log(response.data));
+    return instance.get('mainapp/smphones/').then((response) => response.data);
   },
 };

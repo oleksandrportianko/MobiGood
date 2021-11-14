@@ -3,11 +3,8 @@ import { Formik, Form } from 'formik'
 import { loginValidate } from '../../Common/Validate'
 import TextField from './TextField';
 import './LoginForm.css'
-import { useHistory } from "react-router-dom";
 
 let LoginForm = (props) => {
-   let history = useHistory();
-
    return (
       <Formik
          initialValues={{
@@ -18,7 +15,6 @@ let LoginForm = (props) => {
          onSubmit={values => {
             props.loginUser(values.login, values.password)
             props.onHide()
-            history.push('/')
          }}
       >
          {formik => (
