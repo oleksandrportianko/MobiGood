@@ -1,3 +1,5 @@
+from django.http import HttpResponseRedirect
+
 from .models import Categories, Smartphone, User
 from .serializers import CategoriesSerializer, SmartphoneSerializer, UserSerializer
 
@@ -62,6 +64,24 @@ class UserView(APIView):
         user = User.objects.filter(id=payload['id']).first()
         serializer = UserSerializer(user)
         return Response(serializer.data)
+
+class UpdateUserView(APIView):
+    def put(self, request):
+        token = request.COOKIES.get('jwt')
+
+        if not token:
+            raise AuthenticationFailed('Неавтифіковано!')
+
+        try:
+            payload = jwt.decode(token, 'secret', algorithms='HS256')
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Неавтифіковано!')
+
+        user = User.objects.get(id=payload['id'])
+        user.father_name = (request.POST.get('father_name'))
+        user.save()
+        return HttpResponseRedirect('/user/')
+
 
 
 class LogoutView(APIView):

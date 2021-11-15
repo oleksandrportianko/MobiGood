@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 
 from rest_framework.routers import DefaultRouter
 
-from .views import CategoriesViewSet, SmartphoneViewSet, RegisterView, LoginView, UserView, LogoutView
+from .views import CategoriesViewSet, SmartphoneViewSet, RegisterView, LoginView, UserView, LogoutView, UpdateUserView
 
 
 
@@ -21,6 +21,7 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('user/', UserView.as_view()),
     path('logout/', LogoutView.as_view()),
+    path('update/', UpdateUserView.as_view()),
 ]
 
 if settings.DEBUG:
