@@ -1,7 +1,7 @@
 import { Col } from 'react-bootstrap'
 import { Formik, Form } from 'formik'
 import { loginValidate } from '../../Common/Validate'
-import TextField from './TextField';
+import TextField from '../../Common/TextField/TextField';
 import './LoginForm.css'
 
 let LoginForm = (props) => {

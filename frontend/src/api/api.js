@@ -9,8 +9,16 @@ export const ApiService = {
   LoginUser(username, password) {
     return instance.post('login/', { username, password }).then((response) => response.data);
   },
-  RegistrationUser(username, password, first_name, last_name, email) {
-    return instance.post('register/', { username, password, first_name, last_name, email });
+  RegistrationUser(username, password, first_name, last_name, father_name, email, phone) {
+    return instance.post('register/', {
+      username,
+      password,
+      first_name,
+      last_name,
+      father_name,
+      email,
+      phone,
+    });
   },
   LogoutUser() {
     return instance.post('logout/');
@@ -20,5 +28,15 @@ export const ApiService = {
   },
   GetPhonesData() {
     return instance.get('mainapp/smphones/').then((response) => response.data);
+  },
+  EditPersonalData(username, first_name, last_name, father_name, email, phone) {
+    return instance.put('user/', {
+      username,
+      first_name,
+      last_name,
+      father_name,
+      email,
+      phone,
+    });
   },
 };

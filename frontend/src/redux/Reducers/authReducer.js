@@ -10,8 +10,10 @@ let initialState = {
   id: '',
   firstName: '',
   lastName: '',
+  fatherName: '',
   login: '',
   email: '',
+  phone: '',
 };
 
 let authReducer = (state = initialState, action) => {
@@ -30,8 +32,10 @@ let authReducer = (state = initialState, action) => {
         id: action.id,
         firstName: action.firstName,
         lastName: action.lastName,
+        fatherName: action.fatherName,
         email: action.email,
         login: action.login,
+        phone: action.phone,
       };
     }
     case SET_LOGOUT_USER: {
@@ -40,8 +44,10 @@ let authReducer = (state = initialState, action) => {
         id: '',
         firstName: '',
         lastName: '',
+        fatherName: '',
         email: '',
         login: '',
+        phone: '',
       };
     }
     default: {
@@ -53,13 +59,15 @@ let authReducer = (state = initialState, action) => {
 export const setAuthUser = (id) => ({ type: SET_AUTH_USER, id });
 export const setRegistrationUser = () => ({ type: SET_REGISTRATION_USER });
 export const setLogoutUser = () => ({ type: SET_LOGOUT_USER });
-export const setUserInfo = (id, login, firstName, lastName, email) => ({
+export const setUserInfo = (id, login, firstName, lastName, fatherName, email, phone) => ({
   type: SET_USER_INFO,
   id,
   login,
   firstName,
   lastName,
+  fatherName,
   email,
+  phone,
 });
 
 export const getUserInfo = () => async (dispatch) => {
@@ -70,7 +78,9 @@ export const getUserInfo = () => async (dispatch) => {
         response.username,
         response.first_name,
         response.last_name,
+        response.father_name,
         response.email,
+        response.phone,
       ),
     );
   });
@@ -92,7 +102,9 @@ export const loginUser = (username, password) => async (dispatch) => {
           response.username,
           response.first_name,
           response.last_name,
+          response.father_name,
           response.email,
+          response.phone,
         ),
       );
     });
@@ -100,8 +112,16 @@ export const loginUser = (username, password) => async (dispatch) => {
 };
 
 export const registrationUser =
-  (username, password, first_name, last_name, email) => async (dispatch) => {
-    return ApiService.RegistrationUser(username, password, first_name, last_name, email)
+  (username, password, first_name, last_name, father_name, email, phone) => async (dispatch) => {
+    return ApiService.RegistrationUser(
+      username,
+      password,
+      first_name,
+      last_name,
+      father_name,
+      email,
+      phone,
+    )
       .then((response) =>
         response.status === 200 ? ApiService.LoginUser(username, password) : null,
       )
@@ -113,7 +133,9 @@ export const registrationUser =
               response.username,
               response.first_name,
               response.last_name,
+              response.father_name,
               response.email,
+              response.phone,
             ),
           );
         });

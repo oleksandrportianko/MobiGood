@@ -157,7 +157,16 @@
    color: black;
    font-family: 'Montserrat';
    border: none;
+   font-weight: 500;
 }
+
+@media (min-width: 576px) and (max-width: 768px) {
+   .header-user-image {
+      width: 20px;
+      height: 20px;
+   }
+}
+
 
 .header-profile-profile-link {
    text-decoration: none;

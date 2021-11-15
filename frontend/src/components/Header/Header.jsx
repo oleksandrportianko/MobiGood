@@ -47,7 +47,7 @@ const Header = (props) => {
             <Col sm="auto" md={2} lg={2} xl={2} className="header-number-container d-none me-sm-4 me-md-0 p-0 d-sm-flex align-items-center">
                <p className="header-phone-number m-0 fw-bold">(066)-090-36-80</p>
             </Col>
-            <Col xs={6} sm="auto" md={1} lg={1} xl={1} className="header-cart-container d-flex justify-content-end pe-1 p-0 me-sm-4 me-md-0 p-sm-0 p-md-3 me-lg-0 me-xl-0 d-flex align-items-center">
+            <Col xs={6} sm="auto" md={1} lg={1} xl={1} className="header-cart-container pe-1 p-0 ms-sm-2 ms-md-0 me-sm-4 me-md-0 p-sm-0 p-md-3 me-lg-0 me-xl-2 d-flex justify-content-end d-flex align-items-center">
                <button onClick={() => setShowCart(true)} className="position-relative p-0 border-0 bg-transparent">
                   {props.countItemsCart !== 0 ?
                      <div className="header-cart-circle position-absolute">{props.countItemsCart}</div>
@@ -61,10 +61,10 @@ const Header = (props) => {
                countItemsCart={props.countItemsCart}
             />
             {props.isAuth
-               ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 align-items-center justify-content-end">
+               ? <Col sm="auto" md={2} lg={2} xl={2} className="header-user-name d-none d-sm-flex p-sm-0 p-md-0 ms-sm-4 ms-xl-0 align-items-center justify-content-end">
                   <Link to="/profile" className="header-profile-profile-link d-flex flex-row align-items-center">
-                     <p className="m-0 me-2"><Image src={profile} width="28px" height="28px" /></p>
-                     <p className="header-name-user m-0 me-2">{props.login}</p>
+                     <p className="m-0 me-2"><Image className="header-user-image" src={profile} width="28px" height="28px" /></p>
+                     <p className="header-name-user m-0 me-2">Профіль</p>
                   </Link>
                </Col>
                : <Col sm="auto" md={1} lg={1} xl="auto" className="d-none d-sm-flex p-sm-0 p-md-3 align-items-center">

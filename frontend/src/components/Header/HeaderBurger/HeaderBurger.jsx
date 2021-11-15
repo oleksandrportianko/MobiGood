@@ -8,6 +8,7 @@ import login from '../../../assets/img/login.png'
 import menu from '../../../assets/img/menu.png'
 import close from '../../../assets/img/close.png'
 import { withCookies } from 'react-cookie'
+import profile from '../../../assets/img/profile.png'
 
 const HeaderBurger = (props) => {
    const [activeBurger, setActiveBurger] = useState(false);
@@ -22,10 +23,6 @@ const HeaderBurger = (props) => {
 
    const handleClose = () => {
       setActiveBurger(false)
-   }
-
-   let setLogoutUser = () => {
-      props.logoutUser()
    }
 
    let menuItemsList = props.headerItems.map((m) => {
@@ -79,9 +76,11 @@ const HeaderBurger = (props) => {
                      {menuItemsList}
                   </Nav>
                   {props.isAuth
-                     ? <Col className="header-user-name mt-2 mb-2 d-flex align-items-center justify-content-center">
-                        <p className="header-name-user m-0 me-2">{props.login}</p>
-                        <button className="header-logout-button" onClick={setLogoutUser}>Вийти</button>
+                     ? <Col className="header-user-name mt-2 mb-2 d-flex align-items-center ms-3">
+                        <Link to="/profile" className="header-burger-profile-link d-flex flex-row align-items-center">
+                           <p className="m-0 me-2"><Image src={profile} width="32px" height="32px" /></p>
+                           <p className="header-name-user m-0 me-2">Профіль</p>
+                        </Link>
                      </Col>
                      : <Col className="d-flex align-items-center pt-1">
                         <Image width="32px" height="32px" className="header-login-image" src={login} />
