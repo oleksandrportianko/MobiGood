@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 const Main = () => {
    return (
       <Container fluid className="p-0 m-0">
-         <Row className="m-0 d-flex flex-row">
-            <Col className="p-0 mx-3 my-5 mx-sm-0 my-sm-0 ms-sm-4 d-flex flex-column justify-content-center" >
+         <Row className="m-0 p-0 d-flex flex-row">
+            <Col className="p-0 px-3 my-5 mx-sm-0 my-sm-0 ms-sm-4 d-flex flex-column justify-content-center" >
                <p className="main-title">ТЕЛЕФОНИ І АКСЕСУАРИ ДЛЯ ВАС</p>
                <p className="main-title-discription">Купуйте вигідно, телефони і аксесуари тільки
                   у нас, великий вибір та хороші ціни</p>

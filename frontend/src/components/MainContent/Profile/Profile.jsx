@@ -73,7 +73,7 @@ const Profile = () => {
    return (
       <Container className="profile-container border" fluid>
          <Row>
-            <Col xs={4} className="border-end">
+            <Col sm={4} className="border-end d-none d-sm-flex">
                <Row className="p-2 m-0">
                   <Col xs={2} className="d-none d-sm-flex p-0 ms-2 ms-sm-0 align-items-center justify-content-end">
                      <Image width="40px" height="40px" src={profile} />
@@ -84,12 +84,12 @@ const Profile = () => {
                   </Col>
                </Row>
             </Col>
-            <Col xs={8} className="d-flex align-items-center">
-               <p className="profile-content-title m-0 ms-2">{title}</p>
+            <Col sm={8} className="d-none d-sm-flex align-items-center">
+               <p className="profile-content-title m-2 m-sm-0 ms-2">{title}</p>
             </Col>
          </Row>
          <Row>
-            <Col xs={4} className="p-0 border border-start-0 border-bottom-0">
+            <Col xs={2} sm={4} className="profile-nav-menu p-0">
                <ul className="profile-nav-list p-0 m-0">
                   <li onClick={setActivePersonalData} className={personalDataActive ? "active-nav-item d-flex flex-row align-items-center" : "d-flex flex-row align-items-center"}>
                      <div className="profile-nav-image d-flex align-items-center justify-content-center">
@@ -123,7 +123,10 @@ const Profile = () => {
                   </li>
                </ul>
             </Col>
-            <Col xs={8}>
+            <Col xs={10} sm={8}>
+               <Col className="d-flex d-sm-none align-items-center">
+                  <p className="profile-content-title m-2 m-sm-0 ms-2">{title}</p>
+               </Col>
                {personalDataActive && <PersonalData />}
                {myOrdersActive && <MyOrders />}
                {selectedProductsActive && <SelectedProducts />}
