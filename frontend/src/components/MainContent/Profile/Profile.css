@@ -176,13 +176,37 @@
 }
 
 .profile-save-personal-changes-button {
-   width: 180px;
+   width: 160px;
    height: 40px;
    border: none;
    background: #FF4D00;
    border-radius: 7px;
    color: white;
    font-size: 16px;
+}
+
+.profile-cancel-personal-changes-button {
+   width: 100px;
+   height: 40px;
+   border: none;
+   background: #0c9b37;
+   border-radius: 7px;
+   color: white;
+   font-size: 16px;
+}
+
+@media (max-width: 500px) {
+   .profile-save-personal-changes-button {
+      font-size: 12px;
+      width: 130px;
+   }
+}
+
+@media (max-width: 500px) {
+   .profile-cancel-personal-changes-button {
+      font-size: 12px;
+      width: 80px;
+   }
 }
 
 @media (max-width: 576px) {

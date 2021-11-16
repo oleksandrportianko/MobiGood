@@ -11,7 +11,7 @@ const PersonalData = () => {
       <Container>
          {!editModeData
             ? <UserInformation setEditModeData={setEditModeData} />
-            : <EditUserInformation />
+            : <EditUserInformation setEditModeData={setEditModeData} />
          }
          <ChangePassword />
       </Container >

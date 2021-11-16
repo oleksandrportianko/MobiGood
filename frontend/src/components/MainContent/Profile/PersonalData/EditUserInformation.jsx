@@ -1,12 +1,12 @@
 import { Form, Formik } from 'formik'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { editPersonalDataValidate } from '../../../Common/Validate'
 import TextField from '../../../Common/TextField/TextField';
 import { Col } from 'react-bootstrap';
 import { ApiService } from '../../../../api/api';
 
-const EditUserInformation = () => {
+const EditUserInformation = (props) => {
    const email = useSelector((state) => state.auth.email)
    const firstName = useSelector((state) => state.auth.firstName)
    const lastName = useSelector((state) => state.auth.lastName)
@@ -32,14 +32,15 @@ const EditUserInformation = () => {
          >
             {formik => (
                <Form onSubmit={formik.handleSubmit}>
-                  <TextField label="Введіть логін" name="login" type="text" />
-                  <TextField label="Введіть ім'я" name="first_name" type="text" />
-                  <TextField label="Введіть прізвище" name="last_name" type="text" />
+                  <TextField label="Логін" name="login" type="text" />
+                  <TextField label="Ім'я" name="first_name" type="text" />
+                  <TextField label="Прізвище" name="last_name" type="text" />
                   <TextField label="По батькові" name="father_name" type="text" />
-                  <TextField label="Введіть електронну пошту" name="email" type="email" />
+                  <TextField label="Електронна пошта" name="email" type="email" />
                   <TextField label="Номер телефону" name="phone" type="phone" />
                   <Col className="d-flex justify-content-center" >
-                     <button type="submit" className="profile-save-personal-changes-button mt-1">Зберегти зміни</button>
+                     <button type="submit" className="profile-save-personal-changes-button mt-1 me-1">Зберегти зміни</button>
+                     <button onClick={() => props.setEditModeData(false)} type="submit" className="profile-cancel-personal-changes-button mt-1">Відмінити</button>
                   </Col>
                </Form>
             )}
