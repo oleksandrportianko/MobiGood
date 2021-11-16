@@ -74,11 +74,11 @@ const Profile = () => {
       <Container className="profile-container border" fluid>
          <Row>
             <Col sm={4} className="border-end d-none d-sm-flex">
-               <Row className="p-2 m-0">
-                  <Col xs={2} className="d-none d-sm-flex p-0 ms-2 ms-sm-0 align-items-center justify-content-end">
+               <Row sm={12} className="p-2 m-0">
+                  <Col xs={2} lg="auto" className="d-none d-sm-flex p-0 ms-2 ms-sm-0 align-items-center justify-content-end">
                      <Image width="40px" height="40px" src={profile} />
                   </Col>
-                  <Col className="p-0 p-sm-2" xs={12} sm={10}>
+                  <Col xs={10} lg="auto" className="p-0 p-sm-2">
                      <div className="profile-title-name">{firstName} {lastName}</div>
                      <div className="profile-title-email">{email}</div>
                   </Col>
