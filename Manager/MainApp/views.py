@@ -1,7 +1,7 @@
-from django.http import HttpResponseRedirect
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Categories, Smartphone, User
-from .serializers import CategoriesSerializer, SmartphoneSerializer, UserSerializer
+from .serializers import CategoriesSerializer, SmartphoneSerializer, UserSerializer, ChangePasswordSerializer
 
 from rest_framework import viewsets, status
 from rest_framework.views import APIView
@@ -84,29 +84,37 @@ class UpdateUserView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# class ChangePasswordView(APIView):
-#     def put(self, request):
-#         token = request.COOKIES.get('jwt')
-#
-#         if not token:
-#             raise AuthenticationFailed('Неавтифіковано!')
-#
-#         try:
-#             payload = jwt.decode(token, 'secret', algorithms='HS256')
-#         except jwt.ExpiredSignatureError:
-#             raise AuthenticationFailed('Неавтифіковано!')
-#
-#         user = User.objects.get(id=payload['id'])
-#         password = request.data['old_password']
-#
-#         if not user.check_password(password):
-#             raise AuthenticationFailed('Пароль не правильний!')
-#
-#         serializer = UserSerializer(user, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class ChangePasswordView(APIView):
+    def post(self, request):
+        token = request.COOKIES.get('jwt')
+
+        if not token:
+            raise AuthenticationFailed('Неавтифіковано!')
+
+        try:
+            payload = jwt.decode(token, 'secret', algorithms='HS256')
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Неавтифіковано!')
+
+        user = User.objects.get(id=payload['id'])
+        serializer = ChangePasswordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            if not user.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Не правильний пароль"]}, status=status.HTTP_400_BAD_REQUEST)
+            user.set_password(serializer.data.get("new_password"))
+            user.save()
+            response = {
+                'status': 'success',
+                'code': status.HTTP_200_OK,
+                'message': 'Password updated successfully',
+                'data': []
+            }
+
+            return Response(response)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class LogoutView(APIView):
     def post(self, request):
