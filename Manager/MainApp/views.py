@@ -84,6 +84,30 @@ class UpdateUserView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# class ChangePasswordView(APIView):
+#     def put(self, request):
+#         token = request.COOKIES.get('jwt')
+#
+#         if not token:
+#             raise AuthenticationFailed('Неавтифіковано!')
+#
+#         try:
+#             payload = jwt.decode(token, 'secret', algorithms='HS256')
+#         except jwt.ExpiredSignatureError:
+#             raise AuthenticationFailed('Неавтифіковано!')
+#
+#         user = User.objects.get(id=payload['id'])
+#         password = request.data['old_password']
+#
+#         if not user.check_password(password):
+#             raise AuthenticationFailed('Пароль не правильний!')
+#
+#         serializer = UserSerializer(user, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
