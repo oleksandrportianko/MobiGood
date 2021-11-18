@@ -4,6 +4,7 @@ const SET_AUTH_USER = 'SET-AUTH-USER';
 const SET_REGISTRATION_USER = 'SET-REGISTRATION-USER';
 const SET_USER_INFO = 'SET-USER-INFO';
 const SET_LOGOUT_USER = 'SET-LOGOUT-USER';
+const SET_CHANGED_PASSWORD = 'SET-CHENGED-PASSWOD';
 
 let initialState = {
   isAuth: false,
@@ -50,6 +51,12 @@ let authReducer = (state = initialState, action) => {
         phone: '',
       };
     }
+    case SET_CHANGED_PASSWORD: {
+      return {
+        ...state,
+        changePasswordCode: action.code,
+      };
+    }
     default: {
       return state;
     }
@@ -59,6 +66,7 @@ let authReducer = (state = initialState, action) => {
 export const setAuthUser = (id) => ({ type: SET_AUTH_USER, id });
 export const setRegistrationUser = () => ({ type: SET_REGISTRATION_USER });
 export const setLogoutUser = () => ({ type: SET_LOGOUT_USER });
+export const setChangedPasswordCode = (code) => ({ type: SET_CHANGED_PASSWORD, code });
 export const setUserInfo = (id, login, firstName, lastName, fatherName, email, phone) => ({
   type: SET_USER_INFO,
   id,
@@ -114,6 +122,16 @@ export const logoutUser = () => async (dispatch) => {
   return ApiService.LogoutUser().then((response) => {
     dispatch(setLogoutUser());
   });
+};
+
+export const changePassword = (oldPassword, confirmPassword) => async (dispatch) => {
+  return ApiService.ChangePassword(oldPassword, confirmPassword)
+    .then((response) => {
+      if (response.code === 200) {
+        dispatch(setChangedPasswordCode(response.code));
+      }
+    })
+    .catch((error) => dispatch(setChangedPasswordCode(0)));
 };
 
 export const loginUser = (username, password) => async (dispatch) => {

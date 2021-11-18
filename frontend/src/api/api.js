@@ -41,4 +41,9 @@ export const ApiService = {
       })
       .then((response) => response.data);
   },
+  ChangePassword(old_password, new_password) {
+    return instance
+      .post('change/', { old_password, new_password })
+      .then((response) => response.data);
+  },
 };

@@ -58,3 +58,19 @@ export const editPersonalDataValidate = Yup.object({
   email: Yup.string().email('Не вірна електронна пошта').max(255).required(`Поле обов'язкове`),
   phone: Yup.string().matches(phoneRegex, 'Введіть коректний номер').required(`Поле обов'язкове`),
 });
+
+export const changePasswordValidate = Yup.object({
+  oldPassword: Yup.string()
+    .min(5, 'Пароль повинен бути не менше 5 символів')
+    .max(20, 'Пароль повинен бути не більше 20 символів')
+    .required(`Поле обов'язкове`),
+  newPassword: Yup.string()
+    .min(5, 'Пароль повинен бути не менше 5 символів')
+    .max(20, 'Пароль повинен бути не більше 20 символів')
+    .required(`Поле обов'язкове`),
+  confirmPassword: Yup.string()
+    .min(5, 'Пароль повинен бути не менше 5 символів')
+    .max(20, 'Пароль повинен бути не більше 20 символів')
+    .oneOf([Yup.ref('newPassword'), null], 'Паролі не збігаються')
+    .required(`Поле обов'язкове`),
+});
