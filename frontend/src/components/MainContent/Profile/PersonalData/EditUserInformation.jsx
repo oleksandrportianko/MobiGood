@@ -1,10 +1,10 @@
 import { Form, Formik } from 'formik'
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { editPersonalDataValidate } from '../../../Common/Validate'
 import TextField from '../../../Common/TextField/TextField';
 import { Col } from 'react-bootstrap';
-import { ApiService } from '../../../../api/api';
+import { editPersonalDataUser } from '../../../../redux/Reducers/authReducer'
 
 const EditUserInformation = (props) => {
    const email = useSelector((state) => state.auth.email)
@@ -13,6 +13,7 @@ const EditUserInformation = (props) => {
    const login = useSelector((state) => state.auth.login)
    const phone = useSelector((state) => state.auth.phone)
    const fatherName = useSelector((state) => state.auth.fatherName)
+   const dispatch = useDispatch();
 
    return (
       <div>
@@ -27,7 +28,8 @@ const EditUserInformation = (props) => {
             }}
             validationSchema={editPersonalDataValidate}
             onSubmit={values => {
-               ApiService.EditPersonalData(values.login, values.first_name, values.last_name, values.father_name, values.email, values.phone)
+               dispatch(editPersonalDataUser(values.login, values.first_name, values.last_name, values.father_name, values.email, values.phone))
+               props.setEditModeData(false)
             }}
          >
             {formik => (

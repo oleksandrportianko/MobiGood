@@ -30,13 +30,15 @@ export const ApiService = {
     return instance.get('mainapp/smphones/').then((response) => response.data);
   },
   EditPersonalData(username, first_name, last_name, father_name, email, phone) {
-    return instance.put('user/', {
-      username,
-      first_name,
-      last_name,
-      father_name,
-      email,
-      phone,
-    });
+    return instance
+      .put('update/', {
+        username,
+        first_name,
+        last_name,
+        father_name,
+        email,
+        phone,
+      })
+      .then((response) => response.data);
   },
 };

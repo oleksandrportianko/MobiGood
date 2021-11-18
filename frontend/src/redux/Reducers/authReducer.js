@@ -86,6 +86,30 @@ export const getUserInfo = () => async (dispatch) => {
   });
 };
 
+export const editPersonalDataUser =
+  (username, first_name, last_name, father_name, email, phone) => async (dispatch) => {
+    return ApiService.EditPersonalData(
+      username,
+      first_name,
+      last_name,
+      father_name,
+      email,
+      phone,
+    ).then((response) => {
+      dispatch(
+        setUserInfo(
+          response.id,
+          response.username,
+          response.first_name,
+          response.last_name,
+          response.father_name,
+          response.email,
+          response.phone,
+        ),
+      );
+    });
+  };
+
 export const logoutUser = () => async (dispatch) => {
   return ApiService.LogoutUser().then((response) => {
     dispatch(setLogoutUser());
