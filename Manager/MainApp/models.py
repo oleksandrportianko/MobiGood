@@ -1,8 +1,17 @@
+from datetime import timezone
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import AbstractUser
 
 from phonenumber_field.modelfields import PhoneNumberField
+
+
+
+
+
 
 class User(AbstractUser):
     name = models.CharField(max_length=255)
@@ -15,8 +24,17 @@ class User(AbstractUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
+
+
+
+
+
+
+
 #--------------------------------------------------------------------
 #shop model
+
+
 def get_models_for_count(*model_names):
     return [models.Count(model_name) for model_name in model_names]
 
@@ -125,5 +143,3 @@ class Smartphone(Product):
 
     def get_model_name(self):
         return self.__class__.__name__.lower()
-
-

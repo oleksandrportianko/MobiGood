@@ -48,3 +48,5 @@ class SmartphoneSerializer(serializers.ModelSerializer):
                  'image6', 'color6',
                  'display', 'battery', 'memory', 'main_cam_mp',
                  'frontal_cam_mp', 'soc']
+
+
