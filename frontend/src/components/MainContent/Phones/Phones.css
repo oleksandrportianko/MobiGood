@@ -9,9 +9,9 @@
 .phones-phone-container {
    position: relative;
    border: 1px solid rgb(233, 230, 255);
-   font-size: 14px;
+   font-size: 0.9rem;
    z-index: 1;
-   height: 280px;
+   height: 300px;
    margin: 5px;
    border-radius: 7px;
 }
@@ -21,7 +21,7 @@
    border: 1px solid rgb(233, 230, 255);
    background-color: white;
    border-radius: 7px;
-   font-size: 14px;
+   font-size: 0.9rem;
    word-wrap: break-word;
    z-index: 2;
    margin: 5px;

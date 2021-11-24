@@ -55,7 +55,7 @@ const Phones = () => {
                      {focus[0] === el.id &&
                         <Col className="phones-active-descriptions mt-2">
                            <Col>
-                              Екран ({el.display}) / {el.soc} / Основана камера ({el.main_cam_mp}) / Фронтальна камера ({el.frontal_cam_mp}) / RAM ({el.memory}) / {el.battery}
+                              Екран ({el.display}) / {el.soc} / Основна камера ({el.main_cam_mp}) / Фронтальна камера ({el.frontal_cam_mp}) / RAM ({el.memory}) / {el.battery}
                            </Col>
                         </Col>
                      }
