@@ -44,7 +44,7 @@ const Header = (props) => {
                   <NavLink className="text-decoration-none text-dark" activeClassName="header-nav-active" to="/aboutus"><Nav.Item className="header-nav-item">Про нас</Nav.Item></NavLink>
                </Nav>
             </Col>
-            <Col sm="auto" className="header-number-container d-none p-0 ms-md-2 ms-lg-4 me-lg-4 d-md-flex align-items-center justify-content-center">
+            <Col sm="auto" className="header-number-container d-none p-0 ms-md-3 ms-lg-4 me-lg-4 d-md-flex align-items-center justify-content-center">
                <p className="header-phone-number m-0 fw-bold">(066)-090-36-80</p>
             </Col>
             <Col className="header-cart-container p-0 ms-sm-0 ms-lg-2 d-flex justify-content-end justify-content-sm-center d-flex align-items-center">
