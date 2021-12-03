@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Categories, Smartphone, User
+from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,24 +29,3 @@ class ChangePasswordSerializer(serializers.Serializer):
     model = User
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
-
-class CategoriesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Categories
-        fields = ['id', 'name', 'slug']
-
-
-class SmartphoneSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Smartphone
-        fields = ['id', 'category', 'title', 'slug', 'description', 'price',
-                 'image1', 'color1',
-                 'image2', 'color2',
-                 'image3', 'color3',
-                 'image4', 'color4',
-                 'image5', 'color5',
-                 'image6', 'color6',
-                 'display', 'battery', 'memory', 'main_cam_mp',
-                 'frontal_cam_mp', 'soc']
-
-

@@ -1,20 +1,17 @@
 from django.contrib import admin
-from .models import Categories, Smartphone, User
+from .models import User
+from .shop.models import Product, Category, Cart, CartProduct, Order, Smartphone
 
+admin.site.register(Product)
+admin.site.register(Category)
+admin.site.register(Cart)
+admin.site.register(CartProduct)
+admin.site.register(Order)
+admin.site.register(Smartphone)
 
-# Register your models here.
-@admin.register(Categories)
-class CategoriesModel(admin.ModelAdmin):
-    list_filter = ('name', 'slug')
-    list_display = ('name', 'slug')
-
-
-@admin.register(Smartphone)
-class SmartphonesModel(admin.ModelAdmin):
-    list_filter = ('title', 'slug')
-    list_display = ('title', 'slug')
 
 @admin.register(User)
 class UserModel(admin.ModelAdmin):
     list_filter = ('id', 'username')
     list_display = ('id', 'username')
+

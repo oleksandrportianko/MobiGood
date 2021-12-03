@@ -1,9 +1,7 @@
-from rest_framework.permissions import IsAuthenticated
+from .models import User
+from .serializers import UserSerializer, ChangePasswordSerializer
 
-from .models import Categories, Smartphone, User
-from .serializers import CategoriesSerializer, SmartphoneSerializer, UserSerializer, ChangePasswordSerializer
-
-from rest_framework import viewsets, status
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
@@ -125,12 +123,20 @@ class LogoutView(APIView):
         }
         return response
 
-class CategoriesViewSet(viewsets.ModelViewSet):
-    queryset = Categories.objects.all()
-    serializer_class = CategoriesSerializer
 
-class SmartphoneViewSet(viewsets.ModelViewSet):
-    queryset = Smartphone.objects.all()
-    serializer_class = SmartphoneSerializer
+# class CategoriesViewSet(viewsets.ModelViewSet):
+#     queryset = Categories.objects.all()
+#     serializer_class = CategoriesSerializer
+#
+#
+# class SmartphoneViewSet(viewsets.ModelViewSet):
+#     queryset = Smartphone.objects.all()
+#     serializer_class = SmartphoneSerializer
+
+
+
+
+
+
 
 
