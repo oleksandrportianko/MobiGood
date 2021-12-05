@@ -21,7 +21,7 @@
 
 @media (min-width: 576px) and (max-width: 768px) {
    .main-title {
-      font-size: 1rem;
+      font-size: 1.125rem;
       line-height: 1.5625rem;
       font-weight: 700;
    }
@@ -29,7 +29,7 @@
 
 @media (max-width: 576px){
    .main-title {
-      font-size: 1rem;
+      font-size: 1.125rem;
       line-height: 1.375rem;
       font-weight: 700;
    }
@@ -65,7 +65,7 @@
 
 @media (max-width: 576px){
    .main-title-discription {
-      font-size: 0.6875rem;
+      font-size: 0.75rem;
       line-height: 0.9375rem;
    }
 }

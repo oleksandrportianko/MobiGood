@@ -13,22 +13,22 @@
 }
 
 .profile-title-name {
-   font-size: 18px;
+   font-size: 1.125rem;
 }
 
 @media (max-width: 768px) {
    .profile-title-name {
-      font-size: 14px;
+      font-size: 0.875rem;
    }
 }
 
 .profile-title-email {
-   font-size: 14px;
+   font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
    .profile-title-email {
-      font-size: 12px;
+      font-size: 0.75rem;
    }
 }
 
@@ -80,20 +80,20 @@
 }
 
 .profile-content-title {
-   font-size: 24px;
+   font-size: 1.5rem;
    font-weight: 500;
 }
 
 @media ((min-width: 576px) and (max-width: 768px)) {
    .profile-content-title {
-      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 500;
    }
 }
 
 @media (max-width: 576px) {
    .profile-content-title {
-      font-size: 24px;
+      font-size: 1.5rem;
       font-weight: 500;
    }
 }
@@ -107,7 +107,7 @@
 }
 
 .rersonal-data-label {
-   font-size: 14px;
+   font-size: 0.875rem;
    opacity: 0.4;
 }
 
@@ -125,13 +125,13 @@
 }
 
 .personal-data-change-password-title {
-   font-size: 24px;
+   font-size: 1.5rem;
    font-weight: 500;
 }
 
 @media (max-width: 768px) {
    .personal-data-change-password-title {
-      font-size: 18px;
+      font-size: 1.125rem;
       font-weight: 500;
    }
 }
@@ -142,13 +142,13 @@
    border: none;
    border-bottom: 1px solid black;
    background-color: transparent;
-   font-size: 22px;
+   font-size: 1.375rem;
    padding-left: 5px;
 }
 
 @media (max-width: 768px) {
    .profile-nav-text  {
-      font-size: 14px;
+      font-size: 0.875rem;
    }
 }
 
@@ -165,7 +165,7 @@
    background: #FF4D00;
    border-radius: 7px;
    color: white;
-   font-size: 16px;
+   font-size: 1rem;
 }
 
 .profile-cancel-personal-changes-button {
@@ -175,19 +175,19 @@
    background: #0c9b37;
    border-radius: 7px;
    color: white;
-   font-size: 16px;
+   font-size: 1rem;
 }
 
 @media (max-width: 500px) {
    .profile-save-personal-changes-button {
-      font-size: 12px;
+      font-size: 0.875rem;
       width: 130px;
    }
 }
 
 @media (max-width: 500px) {
    .profile-cancel-personal-changes-button {
-      font-size: 12px;
+      font-size: 0.75rem;
       width: 80px;
    }
 }
