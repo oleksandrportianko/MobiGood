@@ -27,11 +27,14 @@ export const ApiService = {
     return instance.get(`user/`).then((response) => response.data);
   },
   GetPhonesData() {
-    return instance.get('mainapp/smphones/').then((response) => response.data);
+    return instance.get('shop/smartphones/').then((response) => response.data);
+  },
+  GetPhonesById(id) {
+    return instance.get(`shop/smartphones/${id}/`).then((response) => response.data);
   },
   EditPersonalData(username, first_name, last_name, father_name, email, phone) {
     return instance
-      .put('update/', {
+      .put('update_user/', {
         username,
         first_name,
         last_name,
@@ -43,7 +46,7 @@ export const ApiService = {
   },
   ChangePassword(old_password, new_password) {
     return instance
-      .post('change/', { old_password, new_password })
+      .post('change_password/', { old_password, new_password })
       .then((response) => response.data);
   },
 };

@@ -6,6 +6,7 @@ import { Col, Container, Image, Row } from 'react-bootstrap'
 import shoppingCart from '../../../assets/img/shopping-cart.png'
 import heart from '../../../assets/img/heart.png'
 import redHeart from '../../../assets/img/heart-red.svg'
+import { setCartPhones } from '../../../redux/Reducers/cartReducer'
 
 const Phones = () => {
    const phonesData = useSelector((state) => state.phones.phonesData)
@@ -18,6 +19,10 @@ const Phones = () => {
 
    const setBlurActive = (id) => {
       setFocus([])
+   }
+
+   const addPhoneToCart = (id) => {
+      dispatch(setCartPhones(id))
    }
 
    useEffect(() => {
@@ -48,7 +53,7 @@ const Phones = () => {
                      </Col>
                      <Col className="phones-phone-prise mt-2 d-flex justify-content-between align-items-center">
                         {el.price + '₴'}
-                        <button className="phones-img-add-to-card-button">
+                        <button onClick={() => addPhoneToCart(el.id)} className="phones-img-add-to-card-button">
                            <Image className="me-1" width="32px" height="32px" src={shoppingCart} />
                         </button>
                      </Col>

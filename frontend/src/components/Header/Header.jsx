@@ -11,15 +11,20 @@ import HeaderBurger from './HeaderBurger/HeaderBurger'
 import CartModal from './CartModal/CartModal'
 import LoginModal from './LoginModal/LoginModal'
 import RegistrationModal from './RegistraionModal/RegistrationModal'
+import { useSelector, useDispatch } from 'react-redux'
+import { getUserInfo } from '../../redux/Reducers/authReducer'
 
 const Header = (props) => {
-   useEffect(() => {
-      props.getUserInfo();
-   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
    const [showCart, setShowCart] = useState(false);
    const [showLogin, setShowLogin] = useState(false);
    const [showRegistration, setShowRegistration] = useState(false);
+   const isAuth = useSelector((state) => state.auth.isAuth)
+   const countItemsCart = useSelector((state) => state.cart.countItemsCart)
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      dispatch(getUserInfo())
+   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
    return (
       <Container fluid className="p-0 m-0 ps-md-2">
@@ -35,7 +40,7 @@ const Header = (props) => {
                   <p className="border-under-img"></p>
                </Col>
             </Col>
-            <HeaderBurger logoutUser={props.logoutUser} isAuth={props.isAuth} login={props.login} headerItems={props.headerItems} setShowLogin={setShowLogin} setShowRegistration={setShowRegistration} />
+            <HeaderBurger logoutUser={props.logoutUser} isAuth={isAuth} login={props.login} headerItems={props.headerItems} setShowLogin={setShowLogin} setShowRegistration={setShowRegistration} />
             <Col xs={4} sm={6} md="auto" lg={4} className="header-navigation-container justify-content-sm-center d-none d-sm-flex p-0 m-0">
                <Nav className="ml-3">
                   <NavLink className="header-nav-link text-decoration-none text-dark" activeClassName="header-nav-active" to="/phones"><Nav.Item className="header-nav-item">Телефони</Nav.Item></NavLink>
@@ -49,8 +54,8 @@ const Header = (props) => {
             </Col>
             <Col className="header-cart-container p-0 ms-sm-0 ms-lg-2 d-flex justify-content-end justify-content-sm-center d-flex align-items-center">
                <button onClick={() => setShowCart(true)} className="position-relative p-0 border-0 bg-transparent">
-                  {props.countItemsCart !== 0 ?
-                     <div className="header-cart-circle position-absolute">{props.countItemsCart}</div>
+                  {countItemsCart !== 0 ?
+                     <div className="header-cart-circle position-absolute">{countItemsCart}</div>
                      : ""}
                   <Image width="32px" height="32px" className="header-cart-image" src={cart} />
                </button>
@@ -58,9 +63,8 @@ const Header = (props) => {
             <CartModal
                show={showCart}
                onHide={() => setShowCart(false)}
-               countItemsCart={props.countItemsCart}
             />
-            {props.isAuth
+            {isAuth
                ? <Col className="header-user-name p-0 pe-2 d-none d-sm-flex align-items-center justify-content-end">
                   <Link to="/profile" className="header-profile-profile-link d-flex flex-row align-items-center">
                      <p className="m-0 me-2"><Image className="header-user-image" src={profile} width="28px" height="28px" /></p>
