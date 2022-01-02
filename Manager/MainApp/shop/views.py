@@ -14,59 +14,47 @@ from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 import jwt
 
+def get_user(request):
+    token = request.COOKIES.get('jwt')
+
+    if not token:
+        raise AuthenticationFailed('Неавтифіковано!')
+
+    try:
+        payload = jwt.decode(token, 'secret', algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        raise AuthenticationFailed('Неавтифіковано!')
+
+    user = User.objects.filter(id=payload['id']).first()
+    return user
 
 class CartView(APIView):
 
     def get(self, request):
-        token = request.COOKIES.get('jwt')
+        user = get_user(request)
 
-        if not token:
-            raise AuthenticationFailed('Неавтифіковано!')
-
-        try:
-            payload = jwt.decode(token, 'secret', algorithms='HS256')
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Неавтифіковано!')
-
-        user = User.objects.filter(id=payload['id']).first()
-
-        cart = self.get_cart(user)
+        cart = Cart.objects.filter(owner=user, for_anonymous_user=False).first()
         cart_serializer = CartSerializer(cart)
         return Response(cart_serializer.data)
 
 
 class AddToCartView(APIView):
 
-    def _get_or_create_cart_product(customer: User, cart: Cart, product: Product):
-        cart_product, created = CartProduct.objects.get_or_create(
-            user=customer,
-            product=product,
-            cart=cart
+    def post(self, request, *args, **kwargs):
+        product_id = kwargs.get('product_id')
+        product = Product.objects.filter(id=product_id).first()
+        user = get_user(request)
+        cart = Cart.objects.filter(owner=user, for_anonymous_user=False).first()
+        cart_product = CartProduct.objects.get_or_create(
+            user = user,
+            product = product,
+            cart = cart
         )
-        return cart_product, created
 
-    def put(self, request):
+        cart.products.add(cart_product[0])
+        cart.save()
 
-        token = request.COOKIES.get('jwt')
-
-        if not token:
-            raise AuthenticationFailed('Неавтифіковано!')
-
-        try:
-            payload = jwt.decode(token, 'secret', algorithms='HS256')
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Неавтифіковано!')
-
-        user = User.objects.filter(id=payload['id']).first()
-
-        cart = self.get_cart(user)
-        product = get_object_or_404(Product, id=self.kwargs['id'])
-        cart_product, created = self._get_or_create_cart_product(self.request.product, cart, product)
-        if created:
-            cart.products.add(cart_product)
-            cart.save()
-            return Response({"detail": "Товар доданий в корзину", "added": True})
-        return Response({'detail': "Товар вже в корзині", "added": False}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"detail": "Товар доданий в корзину", "added": True})
 
 
 class ChangeQTYView(APIView):
@@ -79,8 +67,10 @@ class ChangeQTYView(APIView):
 
 
 class RemoveFromCartView(APIView):
-    def post(self, *args, **kwargs):
-        cart = self.get_cart(self.request.user)
+    def post(self, request, *args, **kwargs):
+        user = get_user(request)
+
+        cart = Cart.objects.filter(owner=user, for_anonymous_user=False).first()
         cproduct = get_object_or_404(CartProduct, id=kwargs['cart_product_id'])
         cart.products.remove(cproduct)
         cproduct.delete()
@@ -112,6 +102,10 @@ class CategoryViewSet(APIView):
 
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data)
+
+class SmartphoneViewSet(viewsets.ModelViewSet):
+    queryset = Smartphone.objects.all()
+    serializer_class = SmartphoneSerializer
 
 
 # class ProductViewSet(APIView):
@@ -145,8 +139,3 @@ class CategoryViewSet(APIView):
 #         if cart:
 #             serializer_data['in_cart'] = False if instance.id not in products_in_cart else True
 #         return Response(serializer_data)
-
-
-class SmartphoneViewSet(viewsets.ModelViewSet):
-    queryset = Smartphone.objects.all()
-    serializer_class = SmartphoneSerializer
