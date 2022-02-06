@@ -12,6 +12,7 @@ from .shop.views import CartView, AddToCartView, ChangeQTYView, RemoveFromCartVi
 router = DefaultRouter()
 router.register('smartphones', SmartphoneViewSet)
 
+
 urlpatterns = [
     path('shop/', include(router.urls)),
     path('register/', RegisterView.as_view()),
@@ -21,9 +22,9 @@ urlpatterns = [
     path('update_user/', UpdateUserView.as_view()),
     path('change_password/', ChangePasswordView.as_view()),
     path('current_user_cart/', CartView.as_view()),
-    path('add_to_cart/', AddToCartView.as_view()),
-    path('change_qty/(?P<qty>\d+)/(?P<cart_product_id>\d+)/', ChangeQTYView.as_view()),
-    path('remove_from_cart/(?P<cart_product_id>\d+)/', RemoveFromCartView.as_view()),
+    path('add_to_cart/<product_id>/', AddToCartView.as_view()),
+    path('change_qty/<qty>/<cart_product_id>/', ChangeQTYView.as_view()),
+    path('remove_from_cart/<cart_product_id>/', RemoveFromCartView.as_view()),
     path('category/', CategoryViewSet.as_view()),
 ]
 
