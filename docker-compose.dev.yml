@@ -1,0 +1,42 @@
+version: "3.9"
+
+# docker-compose -f docker-compose.dev.yml build
+# docker-compose -f docker-compose.dev.yml up -d
+
+services:
+
+  frontend_mobigood:
+    container_name: frontend_mobigood
+    stdin_open: true
+    restart: always
+    build: ./frontend
+    volumes:
+      - "./frontend:/app"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend_mobigood
+
+  nginx_mobigood:
+    container_name: nginx_mobigood
+    restart: always
+    command: [nginx, '-g', 'daemon off;']
+    build: ./nginx
+    volumes:
+      - "./nginx:/app"
+    ports: 
+      - "80:80"
+    depends_on:
+      - frontend_mobigood
+      - backend_mobigood
+
+  backend_mobigood:
+    container_name: backend_mobigood
+    restart: always
+    build: ./Manager
+    volumes:
+      - "./Manager:/app"
+      - /static:/static
+    ports:
+      - "8000:8000"
+    
