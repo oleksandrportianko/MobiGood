@@ -69,3 +69,8 @@ class SmartphoneSerializer(serializers.ModelSerializer):
         model = Smartphone
         fields = '__all__'
 
+
+class CustomSmartphoneSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Smartphone
+        fields = ['id', 'color']

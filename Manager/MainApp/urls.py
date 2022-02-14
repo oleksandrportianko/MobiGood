@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from .views import RegisterView, LoginView, UserView, LogoutView, UpdateUserView, ChangePasswordView
 
-from .shop.views import CategoryViewSet, SmartphoneViewSet
+from .shop.views import CategoryViewSet, SmartphoneViewSet, CustomSmartphoneViewSet
 from .shop.views import CartView, AddToCartView, ChangeQTYView, RemoveFromCartView
 
 router = DefaultRouter()
@@ -23,6 +23,7 @@ urlpatterns = [
     path('change_password/', ChangePasswordView.as_view()),
     path('current_user_cart/', CartView.as_view()),
     path('add_to_cart/<product_id>/', AddToCartView.as_view()),
+    path('get_smartphone/<smartphone_id>/', CustomSmartphoneViewSet.as_view()),
     path('change_qty/<qty>/<cart_product_id>/', ChangeQTYView.as_view()),
     path('remove_from_cart/<cart_product_id>/', RemoveFromCartView.as_view()),
     path('category/', CategoryViewSet.as_view()),

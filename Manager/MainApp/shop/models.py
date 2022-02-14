@@ -39,42 +39,30 @@ class Product(models.Model):
 
     category = models.ForeignKey(Category, verbose_name='Категорія', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='Назва товару')
-    slug = models.SlugField(unique=False)
     description = models.TextField(verbose_name='Опис', null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Ціна')
-
-    image1 = models.ImageField(verbose_name='Зображення 1', blank=True)
-    color1 = models.CharField(max_length=100, verbose_name='Колір зображення 1', choices=COLOR_CHOICES, blank=True)
-
-    image2 = models.ImageField(verbose_name='Зображення 2', blank=True)
-    color2 = models.CharField(max_length=100, verbose_name='Колір зображення 2', choices=COLOR_CHOICES, blank=True)
-
-    image3 = models.ImageField(verbose_name='Зображення 3', blank=True)
-    color3 = models.CharField(max_length=100, verbose_name='Колір зображення 3', choices=COLOR_CHOICES, blank=True)
-
-    image4 = models.ImageField(verbose_name='Зображення 4', blank=True)
-    color4 = models.CharField(max_length=100, verbose_name='Колір зображення 4', choices=COLOR_CHOICES, blank=True)
-
-    image5 = models.ImageField(verbose_name='Зображення 5', blank=True)
-    color5 = models.CharField(max_length=100, verbose_name='Колір зображення 5', choices=COLOR_CHOICES, blank=True)
-
-    image6 = models.ImageField(verbose_name='Зображення 6', blank=True)
-    color6 = models.CharField(max_length=100, verbose_name='Колір зображення 6', choices=COLOR_CHOICES, blank=True)
+    warranty = models.CharField(max_length=100, verbose_name='Гарантія', default='1 рік')
+    image = models.ImageField(verbose_name='Зображення', blank=True)
+    color = models.CharField(max_length=100, verbose_name='Колір зображення', choices=COLOR_CHOICES, blank=True)
+    product_color = models.CharField(max_length=100,verbose_name='Колір продукту', null=True)
 
     def __str__(self):
         return self.title
 
+
 class Smartphone(Product):
 
+    slug = models.SlugField(unique=False, null=True)
     display = models.CharField(max_length=255, verbose_name='Діагональ, розширення, тип, інші особливості')
     battery = models.CharField(max_length=255, verbose_name="Об`єм акумулятора")
     memory = models.CharField(max_length=255, verbose_name="Об`єм оперативної та вбудованої пам`яті")
     main_cam_mp = models.CharField(max_length=255, verbose_name='Основна камера')
     frontal_cam_mp = models.CharField(max_length=255, verbose_name='Фронтальна камера')
     soc = models.CharField(max_length=255, verbose_name='Процесор')
+    related_models = models.CharField(max_length=100000, verbose_name='Пов`язані моделі', blank=True)
 
     def __str__(self):
-        return "{} : {}".format(self.category.name, self.title)
+        return "{}, {}".format(self.id, self.color)
 
 
 class CartProduct(models.Model):

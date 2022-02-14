@@ -2,7 +2,7 @@ from rest_framework import viewsets
 
 from django.shortcuts import get_object_or_404
 
-from .serializers import CartSerializer, ProductSerializer, CustomCategorySerializer, SmartphoneSerializer
+from .serializers import CartSerializer, ProductSerializer, CustomCategorySerializer, SmartphoneSerializer, CustomSmartphoneSerializer
 from .models import Cart, Product, CartProduct, Category, Smartphone
 from ..models import User
 from .pagination import CategoryProductsPagination
@@ -13,6 +13,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 import jwt
+import re
+
 
 def get_user(request):
     token = request.COOKIES.get('jwt')
@@ -28,12 +30,16 @@ def get_user(request):
     user = User.objects.filter(id=payload['id']).first()
     return user
 
+
 class CartView(APIView):
 
     def get(self, request):
         user = get_user(request)
-
-        cart = Cart.objects.filter(owner=user, for_anonymous_user=False).first()
+        # cart = Cart.objects.filter(owner=user, for_anonymous_user=False).first()
+        cart, created = Cart.objects.get_or_create(
+            owner=user,
+            for_anonymous_user=False
+        )
         cart_serializer = CartSerializer(cart)
         return Response(cart_serializer.data)
 
@@ -46,9 +52,9 @@ class AddToCartView(APIView):
         user = get_user(request)
         cart = Cart.objects.filter(owner=user, for_anonymous_user=False).first()
         cart_product = CartProduct.objects.get_or_create(
-            user = user,
-            product = product,
-            cart = cart
+            user=user,
+            product=product,
+            cart=cart
         )
 
         cart.products.add(cart_product[0])
@@ -103,9 +109,27 @@ class CategoryViewSet(APIView):
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data)
 
+
 class SmartphoneViewSet(viewsets.ModelViewSet):
     queryset = Smartphone.objects.all()
     serializer_class = SmartphoneSerializer
+
+
+class CustomSmartphoneViewSet(APIView):
+    def get(self, *args, **kwargs):
+        prod = Smartphone.objects.filter(id=kwargs['smartphone_id']).first()
+        related_models = Smartphone.objects.filter(slug=prod.slug)
+        related_models = str(related_models)
+        related_models = re.sub("QuerySet ", "", related_models)
+        related_models = re.sub("Smartphone:", "", related_models)
+        related_models = related_models[1 : -1]
+        related_models = related_models[1 : -1]
+        print(related_models)
+        prod.related_models = related_models
+        prod.save()
+        serializer = SmartphoneSerializer(prod)
+        return Response(serializer.data)
+
 
 
 # class ProductViewSet(APIView):
