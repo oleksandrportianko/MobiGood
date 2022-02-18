@@ -111,17 +111,8 @@ class LogoutView(APIView):
 
 class ChangePasswordView(APIView):
     def post(self, request):
-        token = request.COOKIES.get('jwt')
 
-        if not token:
-            raise AuthenticationFailed('Неавтифіковано!')
-
-        try:
-            payload = jwt.decode(token, 'secret', algorithms='HS256')
-        except jwt.ExpiredSignatureError:
-            raise AuthenticationFailed('Неавтифіковано!')
-
-        user = User.objects.get(id=payload['id'])
+        user = get_user_with_jwt_from_cookies(request)
         serializer = ChangePasswordSerializer(data=request.data)
 
         if serializer.is_valid():
@@ -144,7 +135,8 @@ class ChangePasswordView(APIView):
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
-        response.delete_cookie('jwt')
+        response.delete_cookie('access')
+        response.delete_cookie('refresh')
         response.data = {
             'message': 'success'
         }

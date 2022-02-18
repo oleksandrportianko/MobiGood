@@ -47,7 +47,7 @@ class Product(models.Model):
     product_color = models.CharField(max_length=100,verbose_name='Колір продукту', null=True)
 
     def __str__(self):
-        return self.title
+        return "{} {}".format(self.title, self.product_color)
 
 
 class Smartphone(Product):
@@ -100,18 +100,6 @@ class Cart(models.Model):
         super().save(*args, **kwargs)
 
 
-# class Customer(models.Model):
-#
-#     user = models.OneToOneField(User, verbose_name='Покупець', on_delete=models.CASCADE)
-#     address = models.CharField(max_length=255, verbose_name='Адрес', null=True, blank=True)
-#     orders = models.ManyToManyField('Order', verbose_name='Замовлення покупця', related_name='related_order', blank=True)
-#
-#     def __str__(self):
-#         if not (self.user.first_name and self.user.last_name):
-#             return self.user.username
-#         return "Покупець: {} {}".format(self.user.first_name, self.user.last_name)
-
-
 class Order(models.Model):
 
     BUYING_TYPE_SELF = 'self'
@@ -125,15 +113,29 @@ class Order(models.Model):
     customer = models.ForeignKey(User, verbose_name='Покупець', related_name='related_orders', on_delete=models.CASCADE)
     cart = models.ForeignKey(Cart, verbose_name='Корзина', on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=1024, verbose_name='Адрес', null=True, blank=True)
-    buying_type = models.CharField(
-        max_length=100,
-        verbose_name='Тип замовлення',
-        choices=BUYING_TYPE_CHOICES,
-        default=BUYING_TYPE_SELF
-    )
+    # buying_type = models.CharField(max_length=100, verbose_name='Тип замовлення')
     comment = models.TextField(verbose_name='Комментарій до замовлення', null=True, blank=True)
-    created_at = models.DateTimeField(auto_now=True, verbose_name='Дата створення замовлення')
-    order_date = models.DateField(verbose_name='Дата отримання замовлення', default=timezone.now)
+    # created_at = models.DateTimeField(auto_now=True, verbose_name='Дата створення замовлення')
+    # order_date = models.DateTimeField(verbose_name='Дата отримання замовлення', default=timezone.now)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class LikedProduct(models.Model):
+
+    user = models.ForeignKey('User', verbose_name='Власник', on_delete=models.CASCADE)
+    likedlist = models.ForeignKey('LikedList', verbose_name='Список обраних', on_delete=models.CASCADE, related_name='related_products')
+    product = models.ForeignKey(Product, verbose_name='Товар', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Продукт: {} (зі списку обраних)".format(self.product.title)
+
+
+class LikedList(models.Model):
+
+    owner = models.ForeignKey('User', null=True, verbose_name='Власник', on_delete=models.CASCADE)
+    products = models.ManyToManyField(LikedProduct, blank=True, related_name='related_likedlist')
 
     def __str__(self):
         return str(self.id)
