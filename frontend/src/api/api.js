@@ -6,8 +6,8 @@ const instance = axios.create({
 });
 
 export const ApiService = {
-  LoginUser(username, password) {
-    return instance.post('login/', { username, password }).then((response) => response.data);
+  LoginUser(email, password) {
+    return instance.post('login/', { email, password }).then((response) => response.data);
   },
   RegistrationUser(username, password, first_name, last_name, father_name, email, phone) {
     return instance.post('register/', {
@@ -49,4 +49,13 @@ export const ApiService = {
       .post('change_password/', { old_password, new_password })
       .then((response) => response.data);
   },
+  AddToLikedList(id) {
+    return instance.post(`add_to_liked_list/${id}/`).then((response) => response.data)
+  },
+  GetLikedItems() {
+    return instance.get('current_user_liked_list/').then((response) => response.data) 
+  },
+  RemoveLikedItems(id) {
+    return instance.post(`remove_from_liked_list/${id}/`).then((response) => response.data)
+  }
 };

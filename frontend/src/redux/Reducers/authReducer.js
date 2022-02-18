@@ -134,8 +134,8 @@ export const changePassword = (oldPassword, confirmPassword) => async (dispatch)
     .catch((error) => dispatch(setChangedPasswordCode(0)));
 };
 
-export const loginUser = (username, password) => async (dispatch) => {
-  return ApiService.LoginUser(username, password).then((data) => {
+export const loginUser = (email, password) => async (dispatch) => {
+  return ApiService.LoginUser(email, password).then((data) => {
     dispatch(setAuthUser(data.id));
     ApiService.GetUserInfo().then((response) => {
       dispatch(
@@ -165,7 +165,7 @@ export const registrationUser =
       phone,
     )
       .then((response) =>
-        response.status === 200 ? ApiService.LoginUser(username, password) : null,
+        response.status === 200 ? ApiService.LoginUser(email, password) : null,
       )
       .then((response) => {
         ApiService.GetUserInfo().then((response) => {

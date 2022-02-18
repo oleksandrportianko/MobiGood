@@ -8,7 +8,6 @@ let initialState = {
 let phonesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_PHONES_DATA: {
-      console.log();
       return {
         ...state,
         phonesData: [...action.data],

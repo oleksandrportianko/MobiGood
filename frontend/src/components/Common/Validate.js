@@ -3,12 +3,9 @@ import * as Yup from 'yup';
 const phoneRegex = /^\+?3?8?(0\d{9})$/;
 
 export const loginValidate = Yup.object({
-  login: Yup.string()
-    .min(3, 'Логін повинен бути не менше 3 символів')
-    .max(30, 'Логін повинен бути не більше 30 символів')
-    .required(`Поле обов'язкове`),
+  email: Yup.string().email('Не вірна електронна пошта').max(255).required(`Поле обов'язкове`),
   password: Yup.string()
-    .min(5, 'Пароль повинен бути не менше 5 символів')
+    .min(4, 'Пароль повинен бути не менше 5 символів')
     .max(20, 'Пароль повинен бути не більше 20 символів')
     .required(`Поле обов'язкове`),
 });
