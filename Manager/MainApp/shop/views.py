@@ -30,6 +30,7 @@ class AddToCartView(APIView):
         user = get_user_with_jwt_from_cookies(request)
         cart = Cart.objects.filter(owner=user, for_anonymous_user=False).first()
         cart_product = CartProduct.objects.get_or_create(
+            id = product_id,
             user=user,
             product=product,
             cart=cart
@@ -81,11 +82,13 @@ class AddToLikedListView(APIView):
         user = get_user_with_jwt_from_cookies(request)
         list = LikedList.objects.filter(owner=user).first()
         liked_product = LikedProduct.objects.get_or_create(
+            id = product_id,
             user=user,
             product=product, 
             likedlist=list
         )
-
+        product.is_product_liked = True
+        product.save()
         list.products.add(liked_product[0])
         list.save()
 

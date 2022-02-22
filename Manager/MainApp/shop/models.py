@@ -44,8 +44,8 @@ class Product(models.Model):
     warranty = models.CharField(max_length=100, verbose_name='Гарантія', default='1 рік')
     image = models.ImageField(verbose_name='Зображення', blank=True)
     color = models.CharField(max_length=100, verbose_name='Колір зображення', choices=COLOR_CHOICES, blank=True)
-    product_color = models.CharField(max_length=100,verbose_name='Колір продукту', null=True)
-
+    product_color = models.CharField(max_length=100, verbose_name='Колір продукту', null=True)
+    is_product_liked = models.BooleanField(default=True)
     def __str__(self):
         return "{} {}".format(self.title, self.product_color)
 

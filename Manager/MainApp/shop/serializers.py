@@ -110,7 +110,6 @@ class LikedProductSerializer(serializers.ModelSerializer):
 class LikedListSerializer(serializers.ModelSerializer):
 
     products = LikedProductSerializer(many=True)
-    owner = CustomUserSerializer()
 
     class Meta:
         model = LikedList
