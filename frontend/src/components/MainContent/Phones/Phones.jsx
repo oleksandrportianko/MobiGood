@@ -6,14 +6,15 @@ import { Col, Container, Image, Row } from 'react-bootstrap'
 import shoppingCart from '../../../assets/img/shopping-cart.png'
 import heart from '../../../assets/img/heart.png'
 import redHeart from '../../../assets/img/red_heart.png'
-import { setCartPhones } from '../../../redux/Reducers/cartReducer'
-import { addToLikedItem, getLikedItemThunk } from '../../../redux/Reducers/likedProductReducer'
+import { setCartPhones } from '../../../redux/Reducers/authReducer'
+import { addToLikedItem, getLikedItemThunk, removeLikedItem } from '../../../redux/Reducers/likedProductReducer'
 
 const Phones = () => {
-   const phonesData = useSelector((state) => state.phones.phonesData)
-   const likedItems = useSelector((state) => state.liked.likedItems)
-   console.log("liked items from site", likedItems)
-   console.log("phones from site", phonesData)
+   const phonesData = useSelector((state) => state.phones.phonesData);
+   const likedItems = useSelector((state) => state.liked.likedItems);
+   const isAuth = useSelector((state) => state.auth.isAuth);
+   const arrayLikedItems = [];
+   let mapedItems = likedItems.forEach((item) => arrayLikedItems.push(item.id));
    const dispatch = useDispatch()
    const [focus, setFocus] = useState([])
 
@@ -25,7 +26,7 @@ const Phones = () => {
       setFocus([])
    }
 
-   const addPhoneToCart = (id) => {
+   const addPhoneCart = (id) => {
       dispatch(setCartPhones(id))
    }
 
@@ -33,10 +34,23 @@ const Phones = () => {
       dispatch(addToLikedItem(id))
    }
 
+   const removeFromLiked = (id) => {
+      dispatch(removeLikedItem(id))
+   }
+
+   function contains(arr, elem) {
+      for (var i = 0; i < arr.length; i++) {
+          if (arr[i] === elem) {
+              return true;
+          }
+      }
+      return false;
+  }
+
    useEffect(() => {
       dispatch(getPhones())
       dispatch(getLikedItemThunk())
-   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+   }, [dispatch])
 
    return (
       <Container fluid className="phones-container border mt-4 mb-4 p-0">
@@ -46,10 +60,9 @@ const Phones = () => {
                   <Col onMouseEnter={() => setFocusActive(el.id)} onMouseLeave={() => setBlurActive(el.id)}
                      className={focus[0] === el.id ? "phones-phone-active-container" : "phones-phone-container"} xs={2} key={el.id}>
                      <Col className="mt-3 d-flex justify-content-center">
-                        { 
-                           likedItems === el.id ?
-                           <Image onClick={() => addToLiked(el.id)} className="phones-like-image" width="20px" height="20px" src={heart} />
-                           : <Image className="phones-like-image" width="20px" height="20px" src={redHeart} />
+                        { isAuth ?
+                           <Image onClick={contains(arrayLikedItems, el.id) ? () => removeFromLiked(el.id) : () => addToLiked(el.id)} className="phones-like-image" width="20px" height="20px" src={contains(arrayLikedItems, el.id) ? redHeart : heart} />
+                           : ''
                         }
                         <Image className="me-3" width="180px" height="160px" src={el.image} />
                      </Col>
@@ -66,7 +79,7 @@ const Phones = () => {
                      </Col>
                      <Col className="phones-phone-prise mt-2 d-flex justify-content-between align-items-center">
                         {el.price + '₴'}
-                        <button onClick={() => addPhoneToCart(el.id)} className="phones-img-add-to-card-button">
+                        <button onClick={() => addPhoneCart(el.id)} className="phones-img-add-to-card-button">
                            <Image className="me-1" width="32px" height="32px" src={shoppingCart} />
                         </button>
                      </Col>

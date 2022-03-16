@@ -57,5 +57,11 @@ export const ApiService = {
   },
   RemoveLikedItems(id) {
     return instance.post(`remove_from_liked_list/${id}/`).then((response) => response.data)
+  },
+  AddPhoneToCart(id) {
+    return instance.post(`add_to_cart/${id}/`).then((response) => response.data)
+  },
+  GetUserCart() {
+    return instance.get('current_user_cart/').then((response) => response.data)
   }
 };

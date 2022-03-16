@@ -5,6 +5,7 @@ const SET_REGISTRATION_USER = 'SET-REGISTRATION-USER';
 const SET_USER_INFO = 'SET-USER-INFO';
 const SET_LOGOUT_USER = 'SET-LOGOUT-USER';
 const SET_CHANGED_PASSWORD = 'SET-CHENGED-PASSWOD';
+const SET_USER_CART = 'SET-USER-CART';
 
 let initialState = {
   isAuth: false,
@@ -15,6 +16,7 @@ let initialState = {
   login: '',
   email: '',
   phone: '',
+  cart: '',
 };
 
 let authReducer = (state = initialState, action) => {
@@ -57,6 +59,12 @@ let authReducer = (state = initialState, action) => {
         changePasswordCode: action.code,
       };
     }
+    case SET_USER_CART: {
+      return {
+        ...state,
+        cart: action.cart
+      }
+    }
     default: {
       return state;
     }
@@ -64,6 +72,7 @@ let authReducer = (state = initialState, action) => {
 };
 
 export const setAuthUser = (id) => ({ type: SET_AUTH_USER, id });
+export const setUserCart = (cart) => ({ type: SET_USER_CART, cart })
 export const setRegistrationUser = () => ({ type: SET_REGISTRATION_USER });
 export const setLogoutUser = () => ({ type: SET_LOGOUT_USER });
 export const setChangedPasswordCode = (code) => ({ type: SET_CHANGED_PASSWORD, code });
@@ -91,7 +100,12 @@ export const getUserInfo = () => async (dispatch) => {
         response.phone,
       ),
     );
-  });
+  })
+  .then((response) =>
+      ApiService.GetUserCart().then((response) => {
+        dispatch(setUserCart(response))
+      })
+    )
 };
 
 export const editPersonalDataUser =
@@ -149,7 +163,12 @@ export const loginUser = (email, password) => async (dispatch) => {
           response.phone,
         ),
       );
-    });
+    })
+    .then((response) =>
+      ApiService.GetUserCart().then((response) => {
+        dispatch(setUserCart(response))
+      })
+    )
   });
 };
 
@@ -182,6 +201,13 @@ export const registrationUser =
           );
         });
       });
+  };
+  export const setCartPhones = (id) => async (dispatch) => {
+    ApiService.AddPhoneToCart(id).then((response) =>
+    ApiService.GetUserCart().then((response) => {
+      dispatch(setUserCart(response))
+    })
+  )
   };
 
 export default authReducer;

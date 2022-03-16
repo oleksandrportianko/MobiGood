@@ -22,8 +22,6 @@ let cartReducer = (state = initialState, action) => {
 
 export const setPhonesToCart = (id) => ({ type: SET_PHONES_TO_CART, id });
 
-export const setCartPhones = (id) => async (dispatch) => {
-  dispatch(setPhonesToCart(id));
-};
+
 
 export default cartReducer;

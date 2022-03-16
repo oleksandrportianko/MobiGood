@@ -19,8 +19,8 @@ const Header = (props) => {
    const [showLogin, setShowLogin] = useState(false);
    const [showRegistration, setShowRegistration] = useState(false);
    const isAuth = useSelector((state) => state.auth.isAuth)
-   const countItemsCart = useSelector((state) => state.cart.countItemsCart)
    const dispatch = useDispatch()
+   const cartCount = useSelector((state) => state.auth.cart?.total_products)
 
    useEffect(() => {
       dispatch(getUserInfo())
@@ -54,8 +54,8 @@ const Header = (props) => {
             </Col>
             <Col className="header-cart-container p-0 ms-sm-0 ms-lg-2 d-flex justify-content-end justify-content-sm-center d-flex align-items-center">
                <button onClick={() => setShowCart(true)} className="position-relative p-0 border-0 bg-transparent">
-                  {countItemsCart !== 0 ?
-                     <div className="header-cart-circle position-absolute">{countItemsCart}</div>
+                  {cartCount >= 1 ?
+                     <div className="header-cart-circle position-absolute">{cartCount}</div>
                      : ""}
                   <Image width="32px" height="32px" className="header-cart-image" src={cart} />
                </button>

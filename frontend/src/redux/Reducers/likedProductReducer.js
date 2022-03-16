@@ -11,7 +11,7 @@ let phonesReducer = (state = initialState, action) => {
     case GET_LIKED_ITEMS: {
       return {
         ...state,
-        likedItems: [action.items],
+        likedItems: action.items.products,
       }
     }
     default: {
@@ -23,20 +23,24 @@ let phonesReducer = (state = initialState, action) => {
 export const getLikedItemsAction = (items) => ({ type: GET_LIKED_ITEMS, items });
 
 export const addToLikedItem = (id) => async (dispatch) => {
-  return ApiService.AddToLikedList(id).then((response) => {
-     console.log("add to liked from reducer", response)
-  });
+  return ApiService.AddToLikedList(id)
+  .then((response) => 
+    ApiService.GetLikedItems().then((response) => {
+      dispatch(getLikedItemsAction(response))
+  })
+  )
 };
 
 export const removeLikedItem = (id) => async (dispatch) => {
-  return ApiService.RemoveLikedItems(id).then((response) => {
-     console.log("remove liked from reducer", response)
-  });
+  return ApiService.RemoveLikedItems(id).then((response) => 
+    ApiService.GetLikedItems().then((response) => {
+      dispatch(getLikedItemsAction(response))
+    })
+  );
 };
 
 export const getLikedItemThunk = () => async (dispatch) => {
    return ApiService.GetLikedItems().then((response) => {
-      console.log("items liked form reducer", response.id)
       dispatch(getLikedItemsAction(response))
    })
 }

@@ -4,20 +4,9 @@ import Button from '@restart/ui/esm/Button'
 import emptyCart from '../../../assets/img/empty-cart.png'
 import close from '../../../assets/img/close.svg'
 import { useSelector } from 'react-redux'
-import { ApiService } from '../../../api/api'
-import { useEffect, useState } from 'react'
 
 const CartModal = (props) => {
-   const phonesInCart = useSelector((state) => state.cart.items)
-   const countItemsCart = useSelector((state) => state.cart.countItemsCart)
-   const [state, setState] = useState([])
-
-   useEffect(() => {
-      if (countItemsCart !== 0) {
-         ApiService.GetPhonesById(phonesInCart[0]).then((data) => setState([data]))
-         console.log(state)
-      }
-   }, [countItemsCart]) // eslint-disable-line react-hooks/exhaustive-deps
+   const cartCount = useSelector((state) => state.auth.cart?.total_products)
 
    return (
       <Modal show={props.show} size="lg" aria-labelledby="cart-modal" centered>
@@ -28,20 +17,18 @@ const CartModal = (props) => {
             </Container>
          </Modal.Header>
          <Modal.Body className="d-flex flex-column align-items-center" >
-            {countItemsCart === 0 ?
+            {cartCount <= 1 ?
                <div className="d-flex flex-column align-items-center">
                   <Image className="empty-cart-image" src={emptyCart} />
                   <p className="cart-empty-text p-0 m-0">Ваша корзина пуста</p>
                   <p className="cart-empty-text p-0 m-0">Поверніться назад щоб продовжити покупки</p>
                </div>
-               : state.map((el) => {
-                  return <div>{el.id}</div>
-               })
+               : ''
             }
          </Modal.Body>
          <Modal.Footer className="p-1 justify-content-end">
             <Button className="cart-modal-button-back" onClick={props.onHide}>Повернутися назад</Button>
-            {countItemsCart !== 0 ?
+            {cartCount >= 1 ?
                <Button className="cart-modal-button-order" onClick={() => alert('nice')}>Замовити зараз</Button>
                : ""}
          </Modal.Footer>
