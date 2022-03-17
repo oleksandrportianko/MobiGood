@@ -219,4 +219,12 @@ export const registrationUser =
   )
   };
 
+  export const changeQtyCartPhones = (qty, id) => async (dispatch) => {
+    ApiService.ChangeQtyOfProductsInCart(qty, id).then((response) =>
+    ApiService.GetUserCart().then((response) => {
+      dispatch(setUserCart(response))
+    })
+  )
+  };
+
 export default authReducer;

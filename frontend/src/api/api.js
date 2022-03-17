@@ -66,5 +66,8 @@ export const ApiService = {
   },
   RemoveProductFromCart(id) {
     return instance.post(`remove_from_cart/${id}/`).then((response) => response.data) 
-  } 
+  },
+  ChangeQtyOfProductsInCart(id, qty) {
+    return instance.post(`change_qty/${qty}/${id}/`).then((response) => response.data)
+  }
 };
