@@ -202,8 +202,17 @@ export const registrationUser =
         });
       });
   };
+
   export const setCartPhones = (id) => async (dispatch) => {
     ApiService.AddPhoneToCart(id).then((response) =>
+    ApiService.GetUserCart().then((response) => {
+      dispatch(setUserCart(response))
+    })
+  )
+  };
+
+  export const deleteCartPhones = (id) => async (dispatch) => {
+    ApiService.RemoveProductFromCart(id).then((response) =>
     ApiService.GetUserCart().then((response) => {
       dispatch(setUserCart(response))
     })

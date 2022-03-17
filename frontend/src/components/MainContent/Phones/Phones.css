@@ -75,3 +75,12 @@
    font-size: 12px;
    opacity: 0.6;
 }
+
+.phones-added-in-cart {
+   background-color: rgb(18, 181, 18);
+   font-size: 0.875rem;
+   font-weight: 400;
+   color: white;
+   padding: 5px;
+   border-radius: 3px;
+}

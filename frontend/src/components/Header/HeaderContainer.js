@@ -12,7 +12,6 @@ import {
 
 let mapStateToProps = (state) => {
   return {
-    countItemsCart: state.cart.countItemsCart,
     headerItems: state.header.headerItems,
     login: state.auth.login,
     email: state.auth.email,

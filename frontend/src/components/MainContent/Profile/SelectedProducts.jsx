@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { getLikedItemThunk, removeLikedItem } from '../../../redux/Reducers/likedProductReducer'
 
 const SelectedProducts = () => {
@@ -19,7 +20,7 @@ const SelectedProducts = () => {
       <div>
          {
             likedItems.length < 1 ? 
-            <div className='selected-products-noselected'>У вас поки немає обраних товарів</div>
+            <div className='selected-products-noselected'>У вас поки немає обраних, <Link className='selected-products-link' to="/phones"> перейти до товарів</Link></div>
             : likedItems.map((el, idx) => (
                <div key={el.id} className="selected-products-wrapper">
                   <div className='d-flex align-items-center'>

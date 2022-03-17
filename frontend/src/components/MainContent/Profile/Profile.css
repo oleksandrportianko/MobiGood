@@ -270,3 +270,13 @@
    justify-content: center;
    align-items: center;
 }
+
+.selected-products-link {
+   text-decoration: none;
+   margin-left: 5px;
+   color: rgb(185, 200, 216);
+}
+
+.selected-products-link:hover {
+   color: blue;
+}

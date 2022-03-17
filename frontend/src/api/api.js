@@ -63,5 +63,8 @@ export const ApiService = {
   },
   GetUserCart() {
     return instance.get('current_user_cart/').then((response) => response.data)
-  }
+  },
+  RemoveProductFromCart(id) {
+    return instance.post(`remove_from_cart/${id}/`).then((response) => response.data) 
+  } 
 };

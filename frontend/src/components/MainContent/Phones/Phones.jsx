@@ -10,13 +10,23 @@ import { setCartPhones } from '../../../redux/Reducers/authReducer'
 import { addToLikedItem, getLikedItemThunk, removeLikedItem } from '../../../redux/Reducers/likedProductReducer'
 
 const Phones = () => {
+   const cartItems = useSelector((state) => state.auth.cart.products);
    const phonesData = useSelector((state) => state.phones.phonesData);
    const likedItems = useSelector((state) => state.liked.likedItems);
    const isAuth = useSelector((state) => state.auth.isAuth);
+
    const arrayLikedItems = [];
-   let mapedItems = likedItems.forEach((item) => arrayLikedItems.push(item.id));
+   const arrayCartItems = [];
    const dispatch = useDispatch()
    const [focus, setFocus] = useState([])
+
+   if (likedItems) {
+      let mapedLikedItems = likedItems.forEach((item) => arrayLikedItems.push(item.id));
+   }
+
+   if (cartItems) {
+      let mapedCartItems = cartItems.forEach((item) => arrayCartItems.push(item.id));
+   }
 
    const setFocusActive = (id) => {
       setFocus([id])
@@ -79,9 +89,12 @@ const Phones = () => {
                      </Col>
                      <Col className="phones-phone-prise mt-2 d-flex justify-content-between align-items-center">
                         {el.price + '₴'}
-                        <button onClick={() => addPhoneCart(el.id)} className="phones-img-add-to-card-button">
+                        { contains(arrayCartItems, el.id) ? 
+                           <div className='phones-added-in-cart'>В корзині</div>
+                        : <button onClick={() => addPhoneCart(el.id)} className="phones-img-add-to-card-button">
                            <Image className="me-1" width="32px" height="32px" src={shoppingCart} />
                         </button>
+                        }
                      </Col>
                      {focus[0] === el.id &&
                         <Col className="phones-active-descriptions mt-2">
