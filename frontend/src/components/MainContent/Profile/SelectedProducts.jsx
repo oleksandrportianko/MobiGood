@@ -1,9 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getLikedItemThunk, removeLikedItem } from '../../../redux/Reducers/likedProductReducer'
 
 const SelectedProducts = () => {
+   const dispatch = useDispatch();
+   const likedItems = useSelector((state) => state.liked.likedItems)
+   console.log(likedItems)
+
+   const deleteFromLiked = (id) => {
+      dispatch(removeLikedItem(id))
+   }
+
+   useEffect(() => {
+      dispatch(getLikedItemThunk())
+   }, [dispatch])
+
    return (
       <div>
-         selected products
+         {
+            likedItems.length < 1 ? 
+            <div className='selected-products-noselected'>У вас поки немає обраних товарів</div>
+            : likedItems.map((el, idx) => (
+               <div key={el.id} className="selected-products-wrapper">
+                  <div className='d-flex align-items-center'>
+                     <span className='selected-products-id' >{idx + 1}</span>
+                     <img className='selected-products-image' src={"http://localhost:8000" + el.product.image} alt="" />
+                     <div className='selected-products-title'>{el.product.title}</div>
+                     <div className='selected-products-color'>{el.product.product_color}</div>
+                     <div className='selected-products-price'>{el.product.price + "₴"}</div>
+                  </div>
+                  <button onClick={() => deleteFromLiked(el.id)} className='selected-products-delete' >видалити з обраних</button>
+               </div>
+            ))
+         }
       </div>
    )
 }

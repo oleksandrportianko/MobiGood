@@ -54,7 +54,7 @@ const Profile = () => {
       setMyOrdersActive(false)
       setSelectedProductActive(true)
       setMyBonuseActive(false)
-      setTitle('Вибрані товари')
+      setTitle('Обрані товари')
    }
 
    const setActiveMyBonuse = () => {
@@ -107,7 +107,7 @@ const Profile = () => {
                      <div className="profile-nav-image d-flex align-items-center justify-content-center">
                         <Image width="32px" height="32px" src={heart} />
                      </div>
-                     <p className="profile-nav-text m-0">Вибрані товари</p>
+                     <p className="profile-nav-text m-0">Обрані товари</p>
                   </li>
                   <li onClick={setActiveMyBonuse} className={myBonuseActive ? "active-nav-item d-flex flex-row align-items-center" : "d-flex flex-row align-items-center"}>
                      <div className="profile-nav-image d-flex align-items-center justify-content-center">

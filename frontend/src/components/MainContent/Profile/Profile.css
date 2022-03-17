@@ -220,3 +220,53 @@
    color: white;
    background-color: rgb(255, 0, 0);
 }
+
+.selected-products-wrapper {
+   display: flex;
+   flex: row;
+   justify-content: space-between;
+   align-items: center;
+   border-bottom: 1px solid rgb(222, 226, 230);
+   padding: 4px 0 4px 0;
+}
+
+.selected-products-id {
+   width: 8px;
+   margin-right: 5px;
+}
+
+.selected-products-image {
+   height: 60px;
+   width: 70px;
+}
+
+.selected-products-title {
+   margin-right: 5px;
+}
+
+.selected-products-color {
+   margin-right: 20px;
+}
+
+.selected-products-price {
+   font-weight: 500;
+}
+
+.selected-products-delete {
+   border: none;
+   background-color: transparent;
+   color: rgb(222, 226, 230);
+   font-size: 0.875rem;
+}
+
+.selected-products-delete:hover {
+   color: blue;
+}
+
+.selected-products-noselected {
+   height: 500px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}

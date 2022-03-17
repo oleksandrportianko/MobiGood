@@ -17,7 +17,7 @@ const CartModal = (props) => {
             </Container>
          </Modal.Header>
          <Modal.Body className="d-flex flex-column align-items-center" >
-            {cartCount <= 1 ?
+            {cartCount < 1 ?
                <div className="d-flex flex-column align-items-center">
                   <Image className="empty-cart-image" src={emptyCart} />
                   <p className="cart-empty-text p-0 m-0">Ваша корзина пуста</p>
