@@ -8,6 +8,7 @@ import './MobiGood.css';
 import ForAuto from './components/MainContent/ForAuto/ForAuto';
 import AboutUs from './components/MainContent/AboutUs/AboutUs';
 import Profile from './components/MainContent/Profile/Profile';
+import PhonePage from './components/MainContent/Phones/PhonePage';
 
 function MobiGood(props) {
   return (
@@ -22,6 +23,7 @@ function MobiGood(props) {
         <Route path="/forauto" render={() => <ForAuto />} />
         <Route path="/aboutus" render={() => <AboutUs />} />
         <Route path="/profile" render={() => <Profile />} />
+        <Route path="/phone/:phoneId?" render={() => <PhonePage />} />
       </div>
       <div className="footer">
         <Footer />

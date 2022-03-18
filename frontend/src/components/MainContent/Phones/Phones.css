@@ -29,6 +29,11 @@
    box-shadow: 0px 0px 10px rgb(194, 191, 209);
 }
 
+.phones-phone-title {
+   color: black;
+   text-decoration: none;
+}
+
 .phones-phone-title:hover {
    color:rgb(149, 136, 221);
    cursor: pointer;
@@ -62,15 +67,6 @@
    border-radius: 5px;
 }
 
-.phones-color-input {
-   border: 2px solid white;
-   outline: 1px solid black;
-   width: 20px;
-   height: 20px;
-   border-radius: 10px;
-   margin-right: 5px;
-}
-
 .phones-active-descriptions {
    font-size: 12px;
    opacity: 0.6;
@@ -83,4 +79,61 @@
    color: white;
    padding: 5px;
    border-radius: 3px;
+}
+
+.phone-container {
+   width: 100%;
+   min-height: 600px;
+   border: 1px solid rgb(233, 230, 255);
+   border-radius: 30px;
+   margin: 10px 0 20px 0;
+}
+
+.phone-header {
+   font-size: 1.3rem;
+   padding: 10px 20px;
+   font-weight: 500;
+}
+
+.phone-main-info {
+   display: flex;
+   flex-direction: row;
+}
+
+.phone-main-info-image {
+   width: 350px;
+   height: 350px;
+}
+
+.phone-main-info-details {
+   
+}
+
+.phone-main-info-colors {
+   display: flex;
+   flex-direction: column;
+}
+
+.phone-colors-list {
+   display: flex;
+   flex-direction: row;
+}
+
+.phone-colors-items {
+   width: 30px;
+   height: 30px;
+   margin-right: 6px;
+}
+
+.phones-color-input {
+   border: 2px solid white;
+   outline: 1px solid black;
+   width: 30px;
+   height: 30px;
+   border-radius: 10px;
+}
+
+.phone-color-link {
+   color: black;
+   text-decoration: none;
 }

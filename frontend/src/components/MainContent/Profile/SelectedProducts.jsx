@@ -6,7 +6,6 @@ import { getLikedItemThunk, removeLikedItem } from '../../../redux/Reducers/like
 const SelectedProducts = () => {
    const dispatch = useDispatch();
    const likedItems = useSelector((state) => state.liked.likedItems)
-   console.log(likedItems)
 
    const deleteFromLiked = (id) => {
       dispatch(removeLikedItem(id))

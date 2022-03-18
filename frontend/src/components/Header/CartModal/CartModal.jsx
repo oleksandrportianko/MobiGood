@@ -7,13 +7,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeQtyCartPhones, deleteCartPhones } from '../../../redux/Reducers/authReducer'
 import minus from '../../../assets/img/minus.svg'
 import plus from '../../../assets/img/plus.svg'
+import trash from '../../../assets/img/trash.svg'
 
 const CartModal = (props) => {
    const cartCount = useSelector((state) => state.auth.cart?.total_products)
    const cart = useSelector((state) => state.auth.cart)
    const dispatch = useDispatch()
-
-   console.log(cart)
 
    const deleteFromCart = (id) => {
       dispatch(deleteCartPhones(id))
@@ -61,7 +60,7 @@ const CartModal = (props) => {
                               <img onClick={() => cartProductQtyPlus(el.qty, el.product.id)} className="cart-products-count-plus ms-2" src={plus} alt="" />
                            </div>
                            <div className='cart-products-final-qty'>{el.final_price}</div>
-                           <button onClick={() => deleteFromCart(el.id)} className='cart-products-delete'><img className='cart-modal-delete-product' src={close} alt="" /></button>
+                           <button onClick={() => deleteFromCart(el.id)} className='cart-products-delete'><img className='cart-modal-delete-product' src={trash} alt="" /></button>
                         </div>
                      </div>
                      ))}

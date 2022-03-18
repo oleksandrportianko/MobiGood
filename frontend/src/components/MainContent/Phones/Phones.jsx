@@ -8,6 +8,7 @@ import heart from '../../../assets/img/heart.png'
 import redHeart from '../../../assets/img/red_heart.png'
 import { setCartPhones } from '../../../redux/Reducers/authReducer'
 import { addToLikedItem, getLikedItemThunk, removeLikedItem } from '../../../redux/Reducers/likedProductReducer'
+import { Link } from 'react-router-dom'
 
 const Phones = () => {
    const cartItems = useSelector((state) => state.auth.cart.products);
@@ -85,7 +86,9 @@ const Phones = () => {
                         {el.color6 && <span className="phones-color-input" style={{ backgroundColor: el.color6 }} />}
                      </Col>
                      <Col className="phones-phone-title mt-1 d-flex justify-content-center text-center">
-                        {el.title} {el.product_color} {el.memory} {el.id}
+                        <Link className='phones-phone-title' to={'phone/' + el.id}>
+                           Мобільний телефон {el.title} {el.product_color} {el.memory}
+                        </Link>
                      </Col>
                      <Col className="phones-phone-prise mt-2 d-flex justify-content-between align-items-center">
                         {el.price + '₴'}
