@@ -2,8 +2,8 @@ import React from 'react'
 
 const MyBonuse = () => {
    return (
-      <div>
-         Bonuseee
+      <div className='profile-my-bones'>
+         Дана функція буде додана згодом
       </div>
    )
 }

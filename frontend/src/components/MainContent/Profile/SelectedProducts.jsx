@@ -16,7 +16,7 @@ const SelectedProducts = () => {
    }, [dispatch])
 
    return (
-      <div>
+      <div className='selected-products-container'>
          {
             likedItems.length < 1 ? 
             <div className='selected-products-noselected'>У вас поки немає обраних, <Link className='selected-products-link' to="/phones"> перейти до товарів</Link></div>

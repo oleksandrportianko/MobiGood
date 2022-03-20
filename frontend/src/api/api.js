@@ -30,7 +30,7 @@ export const ApiService = {
     return instance.get('shop/smartphones/').then((response) => response.data);
   },
   GetPhonesById(id) {
-    return instance.get(`shop/smartphones/${id}/`).then((response) => response.data);
+    return instance.get(`get_smartphone/${id}/`).then((response) => response.data);
   },
   EditPersonalData(username, first_name, last_name, father_name, email, phone) {
     return instance

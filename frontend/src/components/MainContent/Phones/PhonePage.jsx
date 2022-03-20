@@ -35,7 +35,7 @@ const PhonePage = () => {
     <div className='phone-container'>
        <div className='phone-header'>Мобільний телефон {currentPhoneData.title} {currentPhoneData.product_color} {currentPhoneData.memory} Офіційна гарантія {currentPhoneData.warranty}</div>
        <div className='phone-main-info'>
-          <img className='phone-main-info-image' src={currentPhoneData.image} alt="" />
+          <img className='phone-main-info-image' src={'http://localhost:8000' + currentPhoneData.image} alt="" />
           <div className='phone-main-info-details'>
             <div className='phone-main-info-colors'>
                <p className='p-0 m-0'>Всі кольори</p>

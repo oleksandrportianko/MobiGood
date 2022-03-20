@@ -263,8 +263,13 @@
    color: blue;
 }
 
+.selected-products-container {
+   min-height: 500px;
+   width: 100%;
+}
+
 .selected-products-noselected {
-   height: 500px;
+   min-height: 500px;
    width: 100%;
    display: flex;
    justify-content: center;
@@ -279,4 +284,16 @@
 
 .selected-products-link:hover {
    color: blue;
+}
+
+.profile-my-bones {
+   width: 100%;
+   min-height: 500px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.profile-my-order {
+   min-height: 400px;
 }

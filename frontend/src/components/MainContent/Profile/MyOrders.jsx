@@ -6,7 +6,7 @@ const MyOrders = () => {
    return (
       <Container>
          <Row className="mt-5 mb-5">
-            <Col className="d-flex flex-column align-items-center justify-content-center">
+            <Col className="profile-my-order d-flex flex-column align-items-center justify-content-center">
                <Image className="myorders-image-none-order" width="300px" height="300px" src={emptyCart} />
                <p className="m-0 text-center">У вас поки немає ніяких замовлень</p>
             </Col>

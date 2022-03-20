@@ -1,5 +1,6 @@
 .phones-container {
    border-radius: 20px;
+   min-height: 600px;
 }
 
 .phones-row-colums {
