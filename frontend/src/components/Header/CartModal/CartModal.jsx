@@ -19,8 +19,10 @@ const CartModal = (props) => {
    }
 
    const cartProductQtyMinus = (qty, id) => {
-      let newqty = qty - 1
-      dispatch(changeQtyCartPhones(newqty, id))
+      if (qty > 1) {
+         let newqty = qty - 1
+         dispatch(changeQtyCartPhones(newqty, id))
+      }
    }
 
    const cartProductQtyPlus = (qty, id) => {
