@@ -9,6 +9,7 @@ import redHeart from '../../../assets/img/red_heart.png'
 import { setCartPhones } from '../../../redux/Reducers/authReducer'
 import { addToLikedItem, getLikedItemThunk, removeLikedItem } from '../../../redux/Reducers/likedProductReducer'
 import { Link } from 'react-router-dom'
+import { contains } from '../../Common/ContainFunction'
 
 const Phones = () => {
    const cartItems = useSelector((state) => state.auth.cart.products);
@@ -49,15 +50,6 @@ const Phones = () => {
       dispatch(removeLikedItem(id))
    }
 
-   function contains(arr, elem) {
-      for (var i = 0; i < arr.length; i++) {
-          if (arr[i] === elem) {
-              return true;
-          }
-      }
-      return false;
-  }
-
    useEffect(() => {
       dispatch(getPhones())
       dispatch(getLikedItemThunk())
@@ -70,13 +62,13 @@ const Phones = () => {
                return (
                   <Col onMouseEnter={() => setFocusActive(el.id)} onMouseLeave={() => setBlurActive(el.id)}
                      className={focus[0] === el.id ? "phones-phone-active-container" : "phones-phone-container"} xs={2} key={el.id}>
-                     <Col className="mt-3 d-flex justify-content-center">
-                        { isAuth ?
-                           <Image onClick={contains(arrayLikedItems, el.id) ? () => removeFromLiked(el.id) : () => addToLiked(el.id)} className="phones-like-image" width="20px" height="20px" src={contains(arrayLikedItems, el.id) ? redHeart : heart} />
-                           : ''
-                        }
-                        <Image className="me-3" width="180px" height="160px" src={el.image} />
-                     </Col>
+                        <Col className="mt-3 d-flex justify-content-center">
+                           { isAuth ?
+                              <Image onClick={contains(arrayLikedItems, el.id) ? () => removeFromLiked(el.id) : () => addToLiked(el.id)} className="phones-like-image" width="20px" height="20px" src={contains(arrayLikedItems, el.id) ? redHeart : heart} />
+                              : ''
+                           }
+                           <Image className="me-3" width="180px" height="160px" src={el.image} />
+                        </Col>
                      <Col className="phones-phone-title mt-1 d-flex justify-content-center text-center">
                         <Link className='phones-phone-title' to={'phone/' + el.id}>
                            Мобільний телефон {el.title} {el.product_color} {el.memory}
